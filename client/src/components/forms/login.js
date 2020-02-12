@@ -3,7 +3,6 @@ import './login.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Modal, Form, Col } from 'react-bootstrap';
 import Image from 'react-bootstrap/Image';
-import user from './user.png';
 
 
 
