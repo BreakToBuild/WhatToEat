@@ -1,6 +1,7 @@
 {
     "name": "client",
     "version": "0.1.0",
+    "publishConfig": { "registry": "https://npm.pkg.github.com/" },
     "scripts": {
         "client": "cd client && npm start",
         "server": "nodemon server.js",
@@ -14,4 +15,5 @@
     "devDependencies": {
         "concurrently": "5.1.0"
     }
+    
 }

@@ -16,7 +16,7 @@ class App extends Component {
           <Navbar.Brand href="/">WhatToEat</Navbar.Brand>
           <Navbar.Collapse className="justify-content-end">
             <Nav>
-              <Nav.Link ><Login></Login></Nav.Link>
+              <Nav.Link href="/"><Login></Login></Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
