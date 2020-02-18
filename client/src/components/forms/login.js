@@ -14,8 +14,8 @@ function Login() {
         Login
      </span>
 
-      <Modal show={show} id="modal1" onHide={() => setShow(false)} centered>
-        <Modal.Header closeButton> 
+      <Modal show={show} onHide={() => setShow(false)} centered>
+        <Modal.Header closeButton>
           <div>
             <h1 className="logText">Entre na sua conta.</h1>
           </div>
@@ -26,13 +26,13 @@ function Login() {
             <Form.Row>
               <Form.Group as={Col} controlId="formGridEmail">
                 <Form.Label>Email</Form.Label>
-                <Form.Control type="email" placeholder="" />
+                <Form.Control type="email" placeholder="" required />
               </Form.Group>
             </Form.Row>
             <Form.Row>
               <Form.Group as={Col} idcontrolId="formGridPassword">
                 <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="" />
+                <Form.Control type="password" placeholder="" required />
               </Form.Group>
             </Form.Row>
           </Form>
@@ -43,7 +43,7 @@ function Login() {
           <Button variant="success" type="submit">
             Entrar
   </Button>
-          <Button variant="danger"  onClick={() => setRegShow(true) || setShow(false)}>
+          <Button variant="danger" onClick={() => setRegShow(true) || setShow(false)}>
 
             registo
             </Button>
@@ -53,7 +53,7 @@ function Login() {
 
       {/* Modal 2*/}
 
-      <Modal show={regShow} onHide={() => setRegShow(false)} id="modal2" centered>
+      <Modal show={regShow} onHide={() => setRegShow(false)} centered>
         <Modal.Header closeButton>
           <div>
             <h1 className="logText">Registe a sua conta.</h1>
@@ -61,26 +61,25 @@ function Login() {
         </Modal.Header>
         <Modal.Body>
           <Form>
-          <Form.Row>
-            <Form.Group as={Col} controlId="firName">
-              <Form.Label>Primeiro nome</Form.Label>
-              <Form.Control type="text" placeholder="" />
-            </Form.Group>
+            <Form.Row>
+              <Form.Group as={Col} controlId="firName">
+                <Form.Label>Primeiro nome</Form.Label>
+                <Form.Control type="text" placeholder="" required />
+              </Form.Group>
 
-            <Form.Group as={Col} controlId="secName">
-              <Form.Label>Segundo nome</Form.Label>
-              <Form.Control type="text" placeholder="" />
+              <Form.Group as={Col} controlId="secName">
+                <Form.Label>Segundo nome</Form.Label>
+                <Form.Control type="text" placeholder="" required />
+              </Form.Group>
+            </Form.Row>
+            <Form.Group controlId="email">
+              <Form.Label>Email</Form.Label>
+              <Form.Control type="email" placeholder="" required />
             </Form.Group>
-          </Form.Row>
-          <Form.Group controlId="email">
-         <Form.Label>Email</Form.Label>
-      <Form.Control type="email" placeholder="" />
-   
-  </Form.Group>
-  <Form.Row>
+            <Form.Row>
               <Form.Group as={Col} controlId="password">
                 <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="" />
+                <Form.Control type="password" placeholder="" required />
               </Form.Group>
             </Form.Row>
           </Form>

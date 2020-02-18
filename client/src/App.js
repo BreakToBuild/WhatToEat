@@ -13,10 +13,10 @@ class App extends Component {
     return (
       <div className="App">
         <Navbar className="bg" bg="light" variant="light" sticky="top">
-          <Navbar.Brand href="#home">WhatToEat</Navbar.Brand>
+          <Navbar.Brand href="/">WhatToEat</Navbar.Brand>
           <Navbar.Collapse className="justify-content-end">
             <Nav>
-              <Nav.Link href="#login"><Login></Login></Nav.Link>
+              <Nav.Link ><Login></Login></Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
