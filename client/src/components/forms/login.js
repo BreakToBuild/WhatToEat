@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import './login.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Modal, Form, Col } from 'react-bootstrap';
-import Image from 'react-bootstrap/Image';
 
 
 
@@ -18,7 +17,7 @@ function Login() {
       <Modal show={show} id="modal1" onHide={() => setShow(false)} centered>
         <Modal.Header closeButton> 
           <div>
-            <Image src={user} alt="User" className="Image-user" roundedCircle />
+            <h1 className="logText">Entre na sua conta.</h1>
           </div>
         </Modal.Header>
 
@@ -27,13 +26,13 @@ function Login() {
             <Form.Row>
               <Form.Group as={Col} controlId="formGridEmail">
                 <Form.Label>Email</Form.Label>
-                <Form.Control type="email" placeholder="Insira o seu email" />
+                <Form.Control type="email" placeholder="" />
               </Form.Group>
             </Form.Row>
             <Form.Row>
-              <Form.Group as={Col} controlId="formGridPassword">
+              <Form.Group as={Col} idcontrolId="formGridPassword">
                 <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="Password" />
+                <Form.Control type="password" placeholder="" />
               </Form.Group>
             </Form.Row>
           </Form>
@@ -57,21 +56,31 @@ function Login() {
       <Modal show={regShow} onHide={() => setRegShow(false)} id="modal2" centered>
         <Modal.Header closeButton>
           <div>
-            <h2>Registo</h2>
+            <h1 className="logText">Registe a sua conta.</h1>
           </div>
         </Modal.Header>
         <Modal.Body>
           <Form>
-            <Form.Row>
-              <Form.Group as={Col} controlId="formGridEmail">
-                <Form.Label>Email</Form.Label>
-                <Form.Control type="email" placeholder="Insira o seu email" />
-              </Form.Group>
-            </Form.Row>
-            <Form.Row>
-              <Form.Group as={Col} controlId="formGridPassword">
+          <Form.Row>
+            <Form.Group as={Col} controlId="firName">
+              <Form.Label>Primeiro nome</Form.Label>
+              <Form.Control type="text" placeholder="" />
+            </Form.Group>
+
+            <Form.Group as={Col} controlId="secName">
+              <Form.Label>Segundo nome</Form.Label>
+              <Form.Control type="text" placeholder="" />
+            </Form.Group>
+          </Form.Row>
+          <Form.Group controlId="email">
+         <Form.Label>Email</Form.Label>
+      <Form.Control type="email" placeholder="" />
+   
+  </Form.Group>
+  <Form.Row>
+              <Form.Group as={Col} controlId="password">
                 <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="Password" />
+                <Form.Control type="password" placeholder="" />
               </Form.Group>
             </Form.Row>
           </Form>
