@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import { Navbar, Nav } from 'react-bootstrap';
+import { Navbar, Nav,Button } from 'react-bootstrap';
 import Header from './components/header/header';
 import Content from './components/contentMain/content';
 import Login from './components/forms/login';
@@ -13,10 +13,10 @@ class App extends Component {
     return (
       <div className="App">
         <Navbar className="bg" bg="light" variant="light" sticky="top">
-          <Navbar.Brand href="/">WhatToEat</Navbar.Brand>
+          <Navbar.Brand href="">WhatToEat</Navbar.Brand>
           <Navbar.Collapse className="justify-content-end">
             <Nav>
-              <Nav.Link href="/"><Login></Login></Nav.Link>
+              <Button className="button"><Login></Login></Button>
             </Nav>
           </Navbar.Collapse>
         </Navbar>

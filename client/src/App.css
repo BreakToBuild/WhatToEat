@@ -4,6 +4,29 @@
   text-align: center;
 }
 
+.button{
+  color:black;
+  background-color:white;
+  border-color: white;
+}
+
+.button:active{
+  color:black;
+  background-color:white;
+  border-color: white;
+}
+.button:hover{
+  color:black;
+  background-color:white;
+  border-color: white;
+}
+
+.button:scope{
+  color:black;
+  background-color:white;
+  border-color: white;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
