@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+
+.logText {
+    margin: auto;
+    font-family: 'Poppins', sans-serif;
+    font-size: 30px;
+    color:black;
+}
+
+.Image-user{
+    width: 25%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+p{
+    font-size: 20px;
+    padding-top: 20px;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+}
+.modal{
+        font-family: 'Poppins', sans-serif;
+        font-size: 15px;
+}
