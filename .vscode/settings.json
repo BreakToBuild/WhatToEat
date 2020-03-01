@@ -1,0 +1,48 @@
+{
+  "[python]": {
+    "editor.rulers": [
+      80,
+      88
+    ]
+  },
+  "editor.formatOnSave": true,
+  "python.testing.unittestEnabled": false,
+  "python.testing.nosetestsEnabled": false,
+  "python.testing.pytestEnabled": true,
+  "restructuredtext.builtDocumentationPath": "${workspaceFolder}/docs/_build/html",
+  "restructuredtext.confPath": "${workspaceFolder}/docs",
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": true
+  },
+  "python.formatting.provider": "black",
+  "python.linting.flake8Enabled": true,
+  "python.linting.pylintEnabled": true,
+  "python.linting.pylintUseMinimalCheckers": false,
+  "python.linting.pylintArgs": [
+    "--rcfile=.pylintrc"
+  ],
+  "python.linting.enabled": true,
+  "python.sortImports.args": [
+    "--settings-path=${workspaceFolder}/"
+  ],
+  "python.linting.mypyEnabled": true,
+  "python.linting.mypyCategorySeverity.error": "Error",
+  "python.envFile": "${workspaceFolder}/.env",
+  "python.testing.pytestArgs": [
+    "--exitfirst",
+    "--verbose",
+    "-n 0"
+  ],
+  "python.formatting.blackArgs": [
+    "-t",
+    "py37"
+  ],
+  "autoDocstring.docstringFormat": "sphinx",
+  "restructuredtext.linter.extraArgs": [
+    "--ignore D001"
+  ],
+  "files.exclude": {
+    "frontend/build/": true,
+    "htmlcov/": true
+  },
+}
