@@ -1,0 +1,30 @@
+[MASTER]
+load-plugins=pylint_django
+jobs=4
+ignore=.git,migrations
+
+[FORMAT]
+max-line-length=120
+
+[MESSAGES CONTROL]
+disable=missing-docstring,bad-continuation,abstract-method
+
+[DESIGN]
+max-parents=13
+
+[TYPECHECK]
+generated-members=REQUEST,acl_users,aq_parent,"[a-zA-Z]+_set{1,2}",save,delete
+
+[REPORTS]
+output-format=colorized
+# Include message's id in output
+include-ids=yes
+
+
+[SIMILARITIES]
+min-similarity-lines=6
+ignore-comments=yes
+ignore-docstrings=yes
+
+[MISCELLANEOUS]
+notes=FIXME,TODO

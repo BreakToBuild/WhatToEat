@@ -1,0 +1,56 @@
+version: "3"
+
+volumes:
+  postgres_data_local: {}
+  postgres_backup_local: {}
+
+services:
+  django: &django
+    build:
+      context: .
+      dockerfile: ./compose/local/django/Dockerfile
+    image: promptly_local_django
+    depends_on:
+      - postgres
+      - mailhog
+    volumes:
+      - .:/app
+    env_file:
+      - ./.envs/.local/.django
+      - ./.envs/.local/.postgres
+    ports:
+      - "8000:8000"
+    command: /start
+
+  postgres:
+    build:
+      context: .
+      dockerfile: ./compose/production/postgres/Dockerfile
+    image: promptly_local_postgres
+    volumes:
+      - postgres_data_local:/var/lib/postgresql/data
+      - postgres_backup_local:/backups
+    env_file:
+      - ./.envs/.local/.postgres
+    ports:
+      - "5432:5432"
+
+  mailhog:
+    image: mailhog/mailhog:v1.0.0
+    ports:
+      - "8025:8025"
+      - "1025:1025"
+
+#   frontend:
+#     build:
+#       context: .
+#       dockerfile: ./compose/local/frontend/Dockerfile
+#     image: promptly_local_frontend
+#     volumes:
+#       - ./frontend:/home/app/src
+#       - /home/app/src/node_modules
+#     environment:
+#       - PUBLIC_PATH=http://0.0.0.0:3000
+#     ports:
+#       - "3000:3000"
+#     command: start

@@ -1,0 +1,138 @@
+{
+    "extends": [
+      "airbnb",
+      "prettier",
+      "prettier/react"
+    ],
+    "plugins": [
+      "prettier",
+      "babel"
+    ],
+    "parser": "babel-eslint",
+    "globals": {
+      "cy": true
+    },
+    "parserOptions": {
+      "ecmaVersion": 8,
+      "ecmaFeatures": {
+        "experimentalObjectRestSpred": true,
+        "impliedString": true,
+        "classes": true
+      }
+    },
+    "env": {
+      "browser": true,
+      "node": true,
+      "jest": true,
+      "jquery": true
+    },
+    "settings": {
+      "import/resolver": {
+        "babel-module": {}
+      }
+    },
+    "rules": {
+      "import/no-named-as-default": "off",
+      "import/no-unresolved": "off",
+      "no-unused-vars": [
+        1,
+        {
+          "argsIgnorePattern": "rest|next|^err|response"
+        }
+      ],
+      "arrow-body-style": [
+        2,
+        "as-needed"
+      ],
+      "no-param-reassign": [
+        2,
+        {
+          "props": false
+        }
+      ],
+      "no-console": 0,
+      "import/prefer-default-export": 0,
+      "import": 0,
+      "import/no-extraneous-dependencies": [
+        "error",
+        {
+          "devDependencies": true
+        }
+      ],
+      "func-name": 0,
+      "space-before-function-paren": 0,
+      "comma-dangle": 0,
+      "max-len": 0,
+      "no-bitwise": [
+        "error",
+        {
+          "allow": [
+            "~"
+          ]
+        }
+      ],
+      "import/extensions": 0,
+      "no-underscore-dangle": 0,
+      "consistent-return": 0,
+      "react/display-name": 1,
+      "react/react-in-jsx-scope": 0,
+      "react/forbid-prop-types": 0,
+      "react/no-unescaped-entities": 0,
+      "jsx-a11y/accessible-emoji": 0,
+      "jsx-a11y/click-events-have-key-events": 0,
+      "jsx-a11y/label-has-for": 0,
+      "jsx-a11y/label-has-associated-control": 1,
+      "react/no-did-update-set-state": 0,
+      "react/destructuring-assignment": 0,
+      "class-methods-use-this": 0,
+      "react/jsx-filename-extension": [
+        1,
+        {
+          "extensions": [
+            ".js",
+            ".jsx"
+          ]
+        }
+      ],
+      "radix": 0,
+      "no-shadow": [
+        2,
+        {
+          "hoist": "all",
+          "allow": [
+            "resolve",
+            "reject",
+            "done",
+            "next",
+            "err",
+            "error"
+          ]
+        }
+      ],
+      "babel/quotes": [
+        1,
+        "single",
+        {
+          "avoidEscape": true,
+          "allowTemplateLiterals": true
+        }
+      ],
+      "prettier/prettier": [
+        "error",
+        {
+          "trailingComma": "es5",
+          "singleQuote": true,
+          "printWidth": 120
+        }
+      ],
+      "jsx-a11y/href-no-hash": "off",
+      "jsx-a11y/anchor-is-valid": [
+        "warn",
+        {
+          "aspects": [
+            "invalidHref"
+          ]
+        }
+      ]
+    }
+  }

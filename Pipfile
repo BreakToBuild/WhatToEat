@@ -1,0 +1,48 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django-environ = "*"
+django-model-utils = "*"
+django-allauth = "*"
+djangorestframework = "*"
+phonenumbers = "*"
+django-phonenumber-field = "*"
+django-webpack-loader = "*"
+django-extensions = "*"
+"argon2_cffi" = "*"
+Django = "<3"
+drf-nested-routers = "*"
+django-modeltrans = "*"
+gunicorn = "*"
+django-otp = "*"
+psycopg2-binary = "*"
+
+[dev-packages]
+pytest-cov = "*"
+pytest = "*"
+pytest-django = "*"
+pdbpp = "*"
+"flake8" = "*"
+coverage = "*"
+django-test-plus = "*"
+django_coverage_plugin = "*"
+factory_boy = "*"
+rope = "*"
+mypy = "*"
+pylint = "*"
+codacy-coverage = "*"
+black = "*"
+ipdb = "*"
+bump2version = "*"
+pytest-pudb = "*"
+django-stubs = "*"
+pylint-django = "*"
+
+[requires]
+python_version = "3.7"
+
+[pipenv]
+allow_prereleases = true
