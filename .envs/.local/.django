@@ -1,0 +1,8 @@
+# General
+# ------------------------------------------------------------------------------
+USE_DOCKER=yes
+ENVIRONMENT=development
+DJANGO_READ_DOT_ENV_FILE=no
+DATABASE_URL=postgres://debug:debug@postgres:5432/what_to_eat
+PREFERENCES_TIMEZONE="Europe/Lisbon"
+PREFERENCES_LANGUAGE="pt"
