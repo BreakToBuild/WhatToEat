@@ -24,3 +24,9 @@ yarn-error.log*
 
 # VS-CODE
 .code-workspace
+
+# mypy
+.mypy_cache/
+
+# Auto-generated tag files
+tags
