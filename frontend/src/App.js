@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
-import { Navbar, Nav,Button } from 'react-bootstrap';
-import Header from './components/header/header';
-import Content from './components/contentMain/content';
-import Login from './components/forms/login';
-import Banner from './components/secBanner/secBanner';
-
+import "bootstrap/dist/css/bootstrap.min.css";
+import React, { Component } from "react";
+import { Button, Nav, Navbar } from "react-bootstrap";
+import "./App.css";
+import Content from "./components/contentMain/content";
+import Footer from "./components/footer/footer";
+import Login from "./components/forms/login";
+import Header from "./components/header/header";
+import Banner from "./components/secBanner/secBanner";
 
 class App extends Component {
   render() {
@@ -16,7 +16,9 @@ class App extends Component {
           <Navbar.Brand href="">WhatToEat</Navbar.Brand>
           <Navbar.Collapse className="justify-content-end">
             <Nav>
-              <Button className="button"><Login></Login></Button>
+              <Button className="button">
+                <Login></Login>
+              </Button>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
@@ -27,7 +29,9 @@ class App extends Component {
         <div>
           <Banner></Banner>
         </div>
-
+        <div>
+          <Footer></Footer>
+        </div>
       </div>
     );
   }
