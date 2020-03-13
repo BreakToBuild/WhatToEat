@@ -19,6 +19,7 @@ django-modeltrans = "*"
 gunicorn = "*"
 django-otp = "*"
 psycopg2-binary = "*"
+werkzeug = "*"
 
 [dev-packages]
 pytest-cov = "*"
@@ -40,6 +41,7 @@ bump2version = "*"
 pytest-pudb = "*"
 django-stubs = "*"
 pylint-django = "*"
+werkzeug = "*"
 
 [requires]
 python_version = "3.7"

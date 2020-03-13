@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -eo pipefail
+
+case $1 in
+  build)
+    yarn build
+    ;;
+  build-stag)
+    yarn build:stag
+    ;;
+  test)
+    yarn test $@
+    ;;
+  *)
+    exec "$@"
+    ;;
+esac
