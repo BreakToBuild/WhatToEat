@@ -41,16 +41,21 @@ services:
       - "8025:8025"
       - "1025:1025"
 
-#   frontend:
-#     build:
-#       context: .
-#       dockerfile: ./compose/local/frontend/Dockerfile
-#     image: promptly_local_frontend
-#     volumes:
-#       - ./frontend:/home/app/src
-#       - /home/app/src/node_modules
-#     environment:
-#       - PUBLIC_PATH=http://0.0.0.0:3000
-#     ports:
-#       - "3000:3000"
-#     command: start
+  # redis:
+  #   image: redis:5
+  #   ports:
+  #     - "6379:6379"
+
+  # frontend:
+  #   build:
+  #     context: .
+  #     dockerfile: ./compose/local/frontend/Dockerfile
+  #   image: promptly_local_frontend
+  #   volumes:
+  #     - ./frontend:/home/app/src
+  #     - /home/app/src/node_modules
+  #   environment:
+  #     - PUBLIC_PATH=http://0.0.0.0:3000
+  #   ports:
+  #     - "3000:3000"
+  #   command: start
