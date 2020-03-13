@@ -15,19 +15,19 @@ RUN apt-get update && apt-get install -y \
   # CFFI dependencies
   libffi-dev \
   # Weasyprint dependencies
-  build-essential \ 
+  build-essential \
   python3-pip \
   python3-setuptools \
   python3-wheel \
   python3-cffi \
   libcairo2 \
-  libpango-1.0-0 \ 
+  libpango-1.0-0 \
   libpangocairo-1.0-0 \
   libgdk-pixbuf2.0-0 \
   shared-mime-info \
   # graphviz dependencies
   graphviz-dev graphviz \
-  --no-install-recommends && rm -rf /var/lib/apt/lists/* 
+  --no-install-recommends && rm -rf /var/lib/apt/lists/*
 
 COPY ./compose/production/django/entrypoint /entrypoint
 RUN sed -i 's/\r//' /entrypoint
