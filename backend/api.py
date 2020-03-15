@@ -49,7 +49,7 @@ class BaseAPIView(DjangoRestAPIView):
 
 
 class APIView(BaseAPIView):
-    premission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated,)
 
 
 class AuthenticationView(BaseAPIView):
