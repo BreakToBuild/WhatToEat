@@ -31,28 +31,34 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = [
-    "django.contrib.admin",
+DJANGO_APPS = [
+    # "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.sites",
-    "django_extensions",
-    "allauth",
-    "allauth.socialaccount",
-    "allauth.account",
-    "backend.core",
-    "backend.users",
-    "backend.authentications",
 ]
+
+THIRD_PARTY_APPS = [
+    "rest_framework",
+    "django_extensions",
+]
+
+LOCAL_APPS = [
+    "backend.core.apps.CoreConfig",
+    "backend.users.apps.UsersConfig",
+    "backend.authentications.apps.AuthenticationsConfig",
+]
+
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
-    "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
@@ -60,32 +66,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "config.urls"
 
-# allauth
-TEMPLATES = [
-    {
-        "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
-        "APP_DIRS": True,
-        "OPTIONS": {
-            "context_processors": [
-                "django.template.context_processors.debug",
-                "django.template.context_processors.request",
-                "django.contrib.auth.context_processors.auth",
-                "django.contrib.messages.context_processors.messages",
-            ],
-        },
-    },
-]
-
 AUTHENTICATION_BACKENDS = (
     # Needed to login by username in Django admin, regardless of `allauth`
     "django.contrib.auth.backends.ModelBackend",
-    # `allauth` specific authentication methods, such as login by e-mail
-    "allauth.account.auth_backends.AuthenticationBackend",
 )
 
 WSGI_APPLICATION = "config.wsgi.application"
-
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
@@ -121,6 +107,24 @@ USE_L10N = True
 
 USE_TZ = True
 
+# https://docs.djangoproject.com/en/dev/ref/settings/#std:setting-TEMPLATES-BACKEND
+TEMPLATES = [
+    {
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            # ... some options here ...
+        },
+    },
+]
+
+REST_FRAMEWORK = {
+    "DEFAULT_RENDER_CLASSES": [
+        "rest_framework.renderers.JSONRenderer",
+        "rest_framework.renderers.BrowsableApiRender",
+    ]
+}
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
@@ -132,28 +136,5 @@ AUTH_USER_MODEL = "users.User"
 # https://docs.djangoproject.com/en/dev/ref/settings/#login-redirect-url
 LOGIN_REDIRECT_URL = "core:dashboard"
 # https://docs.djangoproject.com/en/dev/ref/settings/#login-url
-LOGIN_URL = "account_login"
+LOGIN_URL = "login"
 LOGOUT_REDIRECT_URL = LOGIN_URL
-
-# django-allauth
-# https://django-allauth.readthedocs.io/en/latest/configuration.html
-# ------------------------------------------------------------------------------
-ACCOUNT_ALLOW_REGISTRATION = env.bool("DJANGO_ACCOUNT_ALLOW_REGISTRATION", True)
-ACCOUNT_AUTHENTICATION_METHOD = "email"
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_USERNAME_REQUIRED = False
-ACCOUNT_USER_MODEL_USERNAME_FIELD = "email"
-ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
-ACCOUNT_EMAIL_VERIFICATION = None
-# ACCOUNT_ADAPTER = "promptly.authentication.adapters.AccountAdapter"
-# ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = "/app"
-EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = "api/login"
-ACCOUNT_EMAIL_CONFIRMATION_COOLDOWN = 86400
-ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 2
-ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5
-ACCOUNT_LOGIN_ON_PASSWORD_RESET = True
-ACCOUNT_EMAIL_SUBJECT_PREFIX = ""
-SOCIALACCOUNT_AUTO_SIGNUP = False
-ACCOUNT_LOGOUT_REDIRECT_URL = LOGOUT_REDIRECT_URL
-ACCOUNT_UNIQUE_EMAIL = True
-PASSWORD_RESET_TIMEOUT_DAYS = 5
