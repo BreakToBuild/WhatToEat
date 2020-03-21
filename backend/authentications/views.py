@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 from backend.api import APIView, AuthenticationView
 from backend.users import services as user_services
@@ -37,8 +37,15 @@ class SignUpView(AuthenticationView):
         return Response(status=status.HTTP_201_CREATED)
 
 
+class LogoutView(APIView):
+    def post(self, request):
+        logout(request)
+        return Response(status=status.HTTP_200_OK)
+
+
 class CheckAuthView(APIView):
     def get(self, request):
         return Response(
-            {"message": "Hello dear bastard"}, status=status.HTTP_201_CREATED
+            {"message": f"Hello dear bastard {request.user}"},
+            status=status.HTTP_201_CREATED,
         )
