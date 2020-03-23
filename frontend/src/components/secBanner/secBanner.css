@@ -1,6 +1,23 @@
 @import url("https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap");
 
+.bckimg {
+  background-image: url("wallpaper.jpg");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 300px;
+  border-radius: 10px;
+}
 .column {
   flex: 50%;
   padding: 10px;
+}
+.textscd {
+  -webkit-text-stroke: 0.5px black;
+  padding-top: 40px;
+  vertical-align: middle;
+  margin: auto;
+  font-size: 80px;
+  color: white;
+  font-family: "Bebas Neue", cursive;
 }
