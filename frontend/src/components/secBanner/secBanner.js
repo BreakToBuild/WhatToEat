@@ -1,19 +1,19 @@
-import React from 'react';
-import './secBanner.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import {Jumbotron} from 'react-bootstrap';
+import "bootstrap/dist/css/bootstrap.min.css";
+import React from "react";
+import { Container } from "react-bootstrap";
+import "./secBanner.css";
 
 function Banner() {
   return (
     <div className="App">
-            <Jumbotron className="secBg-img">
-                <h1>
-                 Mantenha as suas receitas guardadas
-                </h1>
-                <p className="phara">
-                  e organizadas
-                </p>
-            </Jumbotron>
+      <div className="row">
+        <div className="column">
+          <Container></Container>
+        </div>
+        <div className="column">
+          <Container></Container>
+        </div>
+      </div>
     </div>
   );
 }
