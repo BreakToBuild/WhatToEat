@@ -2,4 +2,6 @@ from django.apps import AppConfig
 
 
 class UsersConfig(AppConfig):
-    name = 'users'
+    name = "backend.users"
+    label = "users"
+    verbose_name = "Users"
