@@ -306,21 +306,27 @@ function Login() {
                 required
               />
             </Form.Group>
+            <Form.Row>
+              <Form.Group as={Col} controlId="formGridTelem">
+                <Form.Label>Telefone</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="telem"
+                  placeholder=""
+                  required
+                />
+              </Form.Group>
 
-            <Form.Group controlId="formGridTelem">
-              <Form.Label>Telefone</Form.Label>
-              <Form.Control type="text" name="telem" placeholder="" required />
-            </Form.Group>
-
-            <Form.Group controlId="formGridBirth">
-              <Form.Label>Data de nascimento</Form.Label>
-              <Form.Control
-                type="text"
-                name="birthday"
-                placeholder=""
-                required
-              />
-            </Form.Group>
+              <Form.Group as={Col} controlId="formGridBirth">
+                <Form.Label>Data de nascimento</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="birthday"
+                  placeholder=""
+                  required
+                />
+              </Form.Group>
+            </Form.Row>
 
             <Button variant="success" type="submit">
               Submeter
