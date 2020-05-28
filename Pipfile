@@ -19,6 +19,7 @@ gunicorn = "*"
 django-otp = "*"
 psycopg2-binary = "*"
 werkzeug = "*"
+django-cors-headers = "*"
 
 [dev-packages]
 pytest-cov = "*"

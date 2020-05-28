@@ -44,6 +44,7 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     "rest_framework",
     "django_extensions",
+    "corsheaders",
 ]
 
 LOCAL_APPS = [
@@ -55,6 +56,7 @@ LOCAL_APPS = [
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -142,3 +144,11 @@ LOGIN_REDIRECT_URL = "core:dashboard"
 # https://docs.djangoproject.com/en/dev/ref/settings/#login-url
 LOGIN_URL = "login"
 LOGOUT_REDIRECT_URL = LOGIN_URL
+
+# django-cors-headers
+# https://github.com/adamchainz/django-cors-headers
+CORS_ORIGIN_WHITELIST = [
+    "dev.localhost:3000",
+    "https://localhost:3000",
+    "https://127.0.0.1:3000",
+]
