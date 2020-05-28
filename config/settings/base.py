@@ -148,7 +148,7 @@ LOGOUT_REDIRECT_URL = LOGIN_URL
 # django-cors-headers
 # https://github.com/adamchainz/django-cors-headers
 CORS_ORIGIN_WHITELIST = [
-    "dev.localhost:3000",
+    "https://dev.localhost:3000",
     "https://localhost:3000",
     "https://127.0.0.1:3000",
 ]
