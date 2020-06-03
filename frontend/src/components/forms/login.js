@@ -3,29 +3,44 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
 import { Modal } from "react-bootstrap";
 import { Button, Form, FormGroup, Input, Label } from "reactstrap";
+import { login } from "../../constants";
 import "./login.css";
 class Login extends React.Component {
   constructor() {
     super();
     this.state = {
-      email: "",
-      password: "",
+      show: false,
+      formFields: {
+        email: "",
+        password: "",
+      },
     };
   }
 
+  inputChangeHandler = (e) => {
+    let formFields = { ...this.state.formFields };
+    formFields[e.target.name] = e.target.value;
+    this.setState({
+      formFields,
+    });
+  };
+
   formHandler = (e, formFields) => {
     e.preventDefault();
-    console.log(this);
-    axios
-      .get("http://127.0.0.1:8000/api/login", formFields)
+    axios(login, {
+      method: "post",
+      data: formFields,
+      withCredentials: true,
+    })
       .then(function (response) {
         console.log(response);
+        window.location.replace("/inicio");
+        alert("Successfully Login");
         //Perform action based on response
       })
       .catch(function (error) {
         console.log(error);
-        this.setModalState(false);
-        //Perform action based on error
+        window.location.replace("/login");
       });
   };
 
@@ -39,6 +54,7 @@ class Login extends React.Component {
     return (
       <>
         <span
+          data-cy="Login"
           onClick={(e) => {
             this.setModalState(true);
           }}
@@ -53,34 +69,37 @@ class Login extends React.Component {
           {" "}
           <Modal.Header closeButton>
             <div>
-              <h1 className="logText">Registe a sua conta.</h1>
+              <h1 className="logText">Entre na sua conta</h1>
             </div>
           </Modal.Header>
           <Modal.Body>
-            <Form>
+            <Form
+              method="POST"
+              onSubmit={(e) => this.formHandler(e, this.state.formFields)}
+            >
               <FormGroup>
                 <Label for="email">Email</Label>
                 <Input
                   type="email"
                   name="email"
                   id="email"
-                  onChange={this.onChange}
-                  value={this.state.email}
+                  onChange={(e) => this.inputChangeHandler(e)}
+                  value={this.state.formFields.email}
                   required
                 />
               </FormGroup>
               <FormGroup>
                 <Label for="password">Password</Label>
                 <Input
-                  type="passsword"
+                  type="password"
                   name="password"
                   id="password"
-                  onChange={this.onChange}
-                  value={this.state.password}
+                  onChange={(e) => this.inputChangeHandler(e)}
+                  value={this.state.formFields.password}
                   required
                 />
               </FormGroup>
-              <Button>Sign in</Button>
+              <Button>Entrar</Button>
             </Form>
           </Modal.Body>
         </Modal>
