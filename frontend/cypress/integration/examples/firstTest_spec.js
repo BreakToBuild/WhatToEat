@@ -1,33 +1,37 @@
 /// <reference types="Cypress" />
 
-describe("First test", () => {
-  it("Visit webSite", () => {
-    cy.visit("/");
-  });
+it("verify request and response SignUp ", () => {
+  cy.visit("http://dev.localhost:3000/signup");
+  cy.server();
+  cy.route("POST", "**/signup").as("signup");
 
-  describe("Open modal", () => {
-    it("Opens the modal", () => {
-      cy.contains("Login").click();
-      cy.focused();
-    });
-  });
+  cy.get("[data-cy=registar]").click();
+  cy.get('[name="first_name"]').type("");
+  cy.get('[name="last_name"]').type("Pedro");
+  cy.get('[name="email"]').type("testedostestes@gmail.com");
+  cy.get('[name="password"]').type("simsim");
+  cy.get("form").submit();
 
-  describe("get and test inputfields", () => {
-    it("Fill the fields", () => {
-      cy.get("Form").within(() => {
-        cy.get("input#formGridEmail.form-control").type("a11204@aetrofa.com");
-        cy.get("input#password-field.form-control").type("jurosegredo");
-        cy.get("[id^=eye]").click({ multiple: true });
-      });
-    });
+  cy.wait("@signup");
+  cy.get("@signup").then((xhr) => {
+    console.log(xhr);
+    expect(xhr.status).to.equal(201);
   });
 });
 
-describe("test register Form", () => {
-  it("open and fill register form", () => {
-    cy.get("[id^=registerBtn").click({ multiple: true });
-    cy.get("Form").within(() => {
-      cy.get("input").type("zé");
-    });
+it("verify request and response Login ", () => {
+  cy.visit("http://dev.localhost:3000/login");
+  cy.server();
+  cy.route("POST", "**/login").as("login");
+
+  cy.get("[data-cy=Login]").click();
+  cy.get('[name="email"]').type("testedostestes@gmail.com");
+  cy.get('[name="password"]').type("simsim");
+  cy.get("form").submit();
+
+  cy.wait("@login");
+  cy.get("@login").then((xhr) => {
+    console.log(xhr);
+    expect(xhr.status).to.equal(200);
   });
 });
