@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
 import { Modal } from "react-bootstrap";
 import { Button, Col, Form, FormGroup, Input, Label, Row } from "reactstrap";
+import { signup } from "../../constants";
 import "./login.css";
 
 class Register extends React.Component {
@@ -30,15 +31,20 @@ class Register extends React.Component {
   formHandler = (e, formFields) => {
     e.preventDefault();
     console.log(this);
-    axios
-      .post("http://127.0.0.1:8000/api/signup", formFields)
+
+    axios(signup, {
+      method: "post",
+      data: formFields,
+      withCredentials: true,
+    })
       .then(function (response) {
         console.log(response);
+        alert("Registado com sucesso");
+        window.location.replace("/");
         //Perform action based on response
       })
       .catch(function (error) {
         console.log(error);
-        this.setModalState(false);
         //Perform action based on error
       });
   };
@@ -53,6 +59,7 @@ class Register extends React.Component {
     return (
       <>
         <span
+          data-cy="registar"
           onClick={(e) => {
             this.setModalState(true);
           }}
