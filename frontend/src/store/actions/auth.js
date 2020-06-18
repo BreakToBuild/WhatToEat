@@ -72,7 +72,7 @@ export const authsignup = (first_name, last_name, email, password) => {
       .then((res) => {
         const token = res.data.key;
         const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
-        localStorage.setItem("token", token);
+        localStorage.setItem("csrftoken", token);
         localStorage.setItem("expirationDate", expirationDate);
         dispatch(authSuccess(token));
         dispatch(checkAuthTimeout(3600));
@@ -85,7 +85,7 @@ export const authsignup = (first_name, last_name, email, password) => {
 
 export const authCheckState = () => {
   return (dispatch) => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("csrftoken");
     if (token === undefined) {
       dispatch(logout());
     } else {
