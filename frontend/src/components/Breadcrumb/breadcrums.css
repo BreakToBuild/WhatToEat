@@ -1,0 +1,10 @@
+.padding {
+  padding-top: 15px;
+  padding-left: 250px;
+}
+.item {
+  display: inline;
+  padding-left: 10px;
+  justify-content: end;
+  cursor: pointer;
+}
