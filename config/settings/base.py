@@ -149,10 +149,10 @@ LOGOUT_REDIRECT_URL = LOGIN_URL
 # https://github.com/adamchainz/django-cors-headers
 CORS_ORIGIN_WHITELIST = [
     "http://dev.localhost:3000",
-    "https://localhost:3000",
-    "https://127.0.0.1:3000",    
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",    
 ]
 
-CSRF_TRUSTED_ORIGINS = ["dev.demo.labs.promptly.health", "dev.localhost"]
+CSRF_TRUSTED_ORIGINS = ["dev.localhost"]
 CORS_ALLOW_CREDENTIALS = True
 CSRF_COOKIE_HTTPONLY = False
