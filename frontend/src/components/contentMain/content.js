@@ -28,8 +28,8 @@ function Content() {
               <FaRegStar style={{ fontSize: 30 }}></FaRegStar>{" "}
             </Card.Title>
             <Card.Text className="text">
-              O utilizador tem também disponivel um sistema de " follow " que
-              permite ao utilizador seguir receitas de outras pessoas.
+              O utilizador tem também disponivel um sistema de " follow " que o
+              permite seguir receitas de outras pessoas.
             </Card.Text>
           </Card.Body>
         </Card>
