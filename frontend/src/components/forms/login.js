@@ -34,13 +34,13 @@ class Login extends React.Component {
     })
       .then(function (response) {
         console.log(response);
+        localStorage.setItem("token", " ");
         window.location.replace("/inicio");
-        alert("Successfully Login");
         //Perform action based on response
       })
       .catch(function (error) {
         console.log(error);
-        window.location.replace("/login");
+        alert("Ocorreu um erro, tente novamente");
       });
   };
 
@@ -59,7 +59,8 @@ class Login extends React.Component {
             this.setModalState(true);
           }}
         >
-          Login
+          {" "}
+          Login{" "}
         </span>
         <Modal
           show={this.state.show}
