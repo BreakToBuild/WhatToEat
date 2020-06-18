@@ -45,6 +45,8 @@ class Register extends React.Component {
       })
       .catch(function (error) {
         console.log(error);
+        alert("Ocorreu um erro, tente novamente");
+
         //Perform action based on error
       });
   };
@@ -64,7 +66,8 @@ class Register extends React.Component {
             this.setModalState(true);
           }}
         >
-          Registar
+          {" "}
+          Registar{" "}
         </span>
         <Modal
           show={this.state.show}
