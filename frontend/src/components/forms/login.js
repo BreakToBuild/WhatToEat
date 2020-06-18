@@ -34,7 +34,6 @@ class Login extends React.Component {
     })
       .then(function (response) {
         console.log(response);
-        localStorage.setItem("token", " ");
         window.location.replace("/inicio");
         //Perform action based on response
       })
