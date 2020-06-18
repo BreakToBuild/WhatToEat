@@ -1,11 +1,13 @@
+import Cookies from "js-cookie";
 import React from "react";
 import { Redirect, Route } from "react-router-dom";
 
+const cookieExists = Cookies.get("csrftoken");
 export const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
     render={(props) =>
-      localStorage.getItem("token") ? (
+      cookieExists ? (
         <Component {...props} />
       ) : (
         <Redirect
