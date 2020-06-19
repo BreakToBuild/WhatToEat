@@ -1,4 +1,4 @@
-<reference types="Cypress" />;
+/// <reference types="Cypress" />
 describe("SignUp & SignIn test", () => {
   it("verify request and response SignUp ", () => {
     cy.visit("/");
