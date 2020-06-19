@@ -14,30 +14,30 @@ function Sidnav() {
           <NavIcon>
             <FaHome style={{ fontSize: "1.75em" }} />
           </NavIcon>
-          <NavLink to="/inicio" style={{ color: "white" }}>
-            Home
+          <NavLink to="/home" style={{ color: "white" }}>
+            Inicio
           </NavLink>
         </NavItem>
 
-        <NavItem eventKey="receitas">
+        <NavItem eventKey="Recipes">
           <NavIcon>
-            <GiCookingPot style={{ fontSize: "1.75em" }} />
+            <GiCookingPot style={{ fontSize: "30.5px" }} />
           </NavIcon>
           <NavText>Receitas</NavText>
         </NavItem>
-        <NavItem eventKey="todas" style={{ padding: "11.1px" }}>
+        <NavItem eventKey="allRecipes" style={{ padding: "11.1px" }}>
           <NavIcon>
-            <FaCookieBite style={{ fontSize: "11.1px" }} />
+            <FaCookieBite style={{ fontSize: "15px" }} />
           </NavIcon>
-          <NavLink to="/inicio/All" style={{ color: "white" }}>
+          <NavLink to="/home/allRecipes" style={{ color: "white" }}>
             Todas as receitas
           </NavLink>
         </NavItem>
-        <NavItem eventKey="minhas" style={{ padding: "11.1px" }}>
+        <NavItem eventKey="myRecipes" style={{ padding: "11.1px" }}>
           <NavIcon>
-            <FaCookie style={{ fontSize: "11.1px" }} />
+            <FaCookie style={{ fontSize: "15px" }} />
           </NavIcon>
-          <NavLink to="/inicio/receitas" style={{ color: "white" }}>
+          <NavLink to="/home/myRecipes" style={{ color: "white" }}>
             Minhas receitas
           </NavLink>
         </NavItem>
