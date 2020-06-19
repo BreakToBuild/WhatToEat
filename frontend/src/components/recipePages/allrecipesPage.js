@@ -1,11 +1,11 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
 import { Container } from "react-bootstrap";
-import BreadcrumbRec from "../Breadcrumb//breadcrumb";
-import TableRec from "../receiptTable/TableRec";
+import BreadcrumbRec from "../Breadcrumb/breadcrumb";
+import TableRec from "../RecipeTable/TableRec";
 import Sidnav from "../sideNav/Sidenav";
 
-function Treceitas() {
+function AllRecipes() {
   return (
     <div>
       <div>
@@ -21,4 +21,4 @@ function Treceitas() {
   );
 }
 
-export default Treceitas;
+export default AllRecipes;
