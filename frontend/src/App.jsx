@@ -14,7 +14,8 @@ function App() {
       <Route exact path="/" component={MainPage} />
       <Route exact path="/404" component={NotFound} />
       <PrivateRoute exact path="/home" component={Dash} />
-      <PrivateRoute exact path="/home/allRecipes" component={AllRecipes} />
+      <PrivateRoute exact path="/recipes" component={AllRecipes} />
+      <PrivateRoute exact path="/my-recipes" component={AllRecipes} />
     </Switch>
   );
 }
