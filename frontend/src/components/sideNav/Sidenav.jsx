@@ -29,7 +29,7 @@ function Sidnav() {
           <NavIcon>
             <FaCookieBite style={{ fontSize: "15px" }} />
           </NavIcon>
-          <NavLink to="/home/allRecipes" style={{ color: "white" }}>
+          <NavLink to="/recipes" style={{ color: "white" }}>
             Todas as receitas
           </NavLink>
         </NavItem>
@@ -37,7 +37,7 @@ function Sidnav() {
           <NavIcon>
             <FaCookie style={{ fontSize: "15px" }} />
           </NavIcon>
-          <NavLink to="/home/myRecipes" style={{ color: "white" }}>
+          <NavLink to="my-recipes" style={{ color: "white" }}>
             Minhas receitas
           </NavLink>
         </NavItem>
