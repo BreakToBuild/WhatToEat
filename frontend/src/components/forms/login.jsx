@@ -34,7 +34,7 @@ class Login extends React.Component {
     })
       .then(function (response) {
         console.log(response);
-        window.location.replace("/inicio");
+        window.location.replace("/home");
         //Perform action based on response
       })
       .catch(function (error) {
@@ -58,15 +58,13 @@ class Login extends React.Component {
             this.setModalState(true);
           }}
         >
-          {" "}
-          Login{" "}
+          Login
         </span>
         <Modal
           show={this.state.show}
           onHide={() => this.setModalState(false)}
           centered
         >
-          {" "}
           <Modal.Header closeButton>
             <div>
               <h1 className="logText">Entre na sua conta</h1>

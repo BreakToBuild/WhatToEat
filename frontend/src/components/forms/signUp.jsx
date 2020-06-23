@@ -66,15 +66,13 @@ class Register extends React.Component {
             this.setModalState(true);
           }}
         >
-          {" "}
-          Registar{" "}
+          Registar
         </span>
         <Modal
           show={this.state.show}
           onHide={() => this.setModalState(false)}
           centered
         >
-          {" "}
           <Modal.Header closeButton>
             <div>
               <h1 className="logText">Registe a sua conta.</h1>
