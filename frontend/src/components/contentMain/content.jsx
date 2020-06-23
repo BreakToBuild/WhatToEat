@@ -12,7 +12,6 @@ function Content() {
         <Card>
           <Card.Body>
             <Card.Title>
-              {" "}
               <FiLock style={{ fontSize: 30 }}></FiLock>{" "}
             </Card.Title>
             <Card.Text className="text">
@@ -24,7 +23,6 @@ function Content() {
         <Card>
           <Card.Body>
             <Card.Title>
-              {" "}
               <FaRegStar style={{ fontSize: 30 }}></FaRegStar>{" "}
             </Card.Title>
             <Card.Text className="text">
@@ -36,10 +34,7 @@ function Content() {
         <Card>
           <Card.Body>
             <Card.Title>
-              {" "}
-              <FaRegCalendarAlt
-                style={{ fontSize: 30 }}
-              ></FaRegCalendarAlt>{" "}
+              <FaRegCalendarAlt style={{ fontSize: 30 }}></FaRegCalendarAlt>{" "}
             </Card.Title>
             <Card.Text className="text">
               Poderá também utilizar as suas receitas guardadas e criar o seu
