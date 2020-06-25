@@ -1,7 +1,8 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
-import BreadcrumbRec from "../components/Breadcrumb/breadcrumb";
 import Sidnav from "../components/sideNav/Sidenav";
+import "./index.css";
+import BreadCrumbs from "../components/Breadcrumb/breadcrumb.jsx";
 
 function Dash() {
   return (
@@ -10,7 +11,7 @@ function Dash() {
         <Sidnav></Sidnav>
       </div>
       <div className="main">
-        <BreadcrumbRec></BreadcrumbRec>
+        <BreadCrumbs />
       </div>
     </div>
   );
