@@ -1,18 +1,18 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
 import { Container } from "react-bootstrap";
-import BreadcrumbRec from "../Breadcrumb/breadcrumb";
 import TableRec from "../RecipeTable/TableRec";
 import Sidnav from "../sideNav/Sidenav";
+import BreadCrumbs from "..//Breadcrumb/breadcrumb.jsx";
 
-function AllRecipes() {
+function AllRecipes(props) {
   return (
     <div>
       <div>
         <Sidnav></Sidnav>
       </div>
       <div className="main">
-        <BreadcrumbRec></BreadcrumbRec>
+        <BreadCrumbs />
         <Container>
           <TableRec></TableRec>
         </Container>

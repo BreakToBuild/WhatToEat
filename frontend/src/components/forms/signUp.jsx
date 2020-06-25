@@ -11,6 +11,7 @@ class Register extends React.Component {
     super();
     this.state = {
       show: false,
+      errorMessage: "",
       formFields: {
         first_name: "",
         last_name: "",
@@ -25,35 +26,37 @@ class Register extends React.Component {
     formFields[e.target.name] = e.target.value;
     this.setState({
       formFields,
+      errorMessage: "",
     });
   };
 
   formHandler = (e, formFields) => {
     e.preventDefault();
-    console.log(this);
-
     axios(signup, {
       method: "post",
       data: formFields,
       withCredentials: true,
     })
-      .then(function (response) {
+      .then((response) => {
         console.log(response);
-        alert("Registado com sucesso");
         window.location.replace("/");
-        //Perform action based on response
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.log(error);
-        alert("Ocorreu um erro, tente novamente");
-
-        //Perform action based on error
+        this.setState({ errorMessage: "Ocorreu um erro, tente novamente" });
       });
   };
 
   setModalState = (state) => {
     this.setState({
       show: state,
+      errorMessage: "",
+      formFields: {
+        first_name: "",
+        last_name: "",
+        email: "",
+        password: "",
+      },
     });
   };
 
@@ -61,6 +64,7 @@ class Register extends React.Component {
     return (
       <>
         <span
+          style={{ cursor: "pointer" }}
           data-cy="registar"
           onClick={(e) => {
             this.setModalState(true);
@@ -133,6 +137,7 @@ class Register extends React.Component {
                   required
                 />
               </FormGroup>
+              <p className="error-message">{this.state.errorMessage}</p>
               <Button type="submit">Registar</Button>
             </Form>
           </Modal.Body>
