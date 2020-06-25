@@ -1,16 +1,28 @@
 import React from "react";
 import { Breadcrumb } from "react-bootstrap";
-import "../Breadcrumb/breadcrums.css";
+import { NavLink } from "react-router-dom";
+import "./breadcrums.css";
 
-const BreadcrumbRec = () => {
+function BreadCrumbs() {
   return (
-    <div>
-      <Breadcrumb className="padding">
-        <Breadcrumb.Item href="/inicio">Inicio</Breadcrumb.Item>
-        <Breadcrumb.Item href="/inicio/All">Todas as receitas</Breadcrumb.Item>
-      </Breadcrumb>
-    </div>
+    <Breadcrumb style={{ padding: "20px" }}>
+      <Breadcrumb.Item>
+        <NavLink exact={true} activeClassName="is-active" to="/home">
+          Inicio
+        </NavLink>
+      </Breadcrumb.Item>
+      <Breadcrumb.Item>
+        <NavLink exact={true} activeClassName="is-active" to="/recipes">
+          Receitas
+        </NavLink>
+      </Breadcrumb.Item>
+      <Breadcrumb.Item>
+        <NavLink exact={true} activeClassName="is-active" to="/my-recipes">
+          Minhas receitas
+        </NavLink>
+      </Breadcrumb.Item>
+    </Breadcrumb>
   );
-};
+}
 
-export default BreadcrumbRec;
+export default BreadCrumbs;
