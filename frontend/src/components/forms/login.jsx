@@ -4,12 +4,15 @@ import React from "react";
 import { Modal } from "react-bootstrap";
 import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 import { login } from "../../constants";
+
 import "./login.css";
+
 class Login extends React.Component {
   constructor() {
     super();
     this.state = {
       show: false,
+      errorMessage: "",
       formFields: {
         email: "",
         password: "",
@@ -21,6 +24,7 @@ class Login extends React.Component {
     let formFields = { ...this.state.formFields };
     formFields[e.target.name] = e.target.value;
     this.setState({
+      errorMessage: "",
       formFields,
     });
   };
@@ -32,20 +36,24 @@ class Login extends React.Component {
       data: formFields,
       withCredentials: true,
     })
-      .then(function (response) {
+      .then((response) => {
         console.log(response);
         window.location.replace("/home");
-        //Perform action based on response
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.log(error);
-        alert("Ocorreu um erro, tente novamente");
+        this.setState({ errorMessage: "Ocorreu um erro, tente novamente" });
       });
   };
 
   setModalState = (state) => {
     this.setState({
+      errorMessage: "",
       show: state,
+      formFields: {
+        email: "",
+        password: "",
+      },
     });
   };
 
@@ -53,6 +61,7 @@ class Login extends React.Component {
     return (
       <>
         <span
+          style={{ padding: "20px", cursor: "pointer" }}
           data-cy="Login"
           onClick={(e) => {
             this.setModalState(true);
@@ -97,6 +106,7 @@ class Login extends React.Component {
                   required
                 />
               </FormGroup>
+              <p className="error-message">{this.state.errorMessage}</p>
               <Button>Entrar</Button>
             </Form>
           </Modal.Body>
