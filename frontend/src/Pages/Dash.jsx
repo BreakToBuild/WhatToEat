@@ -1,9 +1,8 @@
-import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
 import Sidnav from "../components/sideNav/Sidenav";
 import "./index.css";
 import BreadCrumbs from "../components/Breadcrumb/breadcrumb.jsx";
-
+import Fullcalendar from "../components/scheduler/Fullcalendar.jsx";
 function Dash() {
   return (
     <div>
@@ -12,6 +11,12 @@ function Dash() {
       </div>
       <div className="main">
         <BreadCrumbs />
+      </div>
+
+      <div className="scheduler">
+        <div style={{ padding: "100px" }}>
+          <Fullcalendar />
+        </div>
       </div>
     </div>
   );

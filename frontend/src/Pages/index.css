@@ -1,6 +1,15 @@
+@import "~bryntum-scheduler/scheduler.stockholm.css";
+
 .item {
   display: inline;
 }
 .main {
   padding-left: 250px;
+}
+
+.scheduler {
+  height: 100vh;
+  width: 100%;
+  margin-left: 270px;
+  padding-right: 300px;
 }
