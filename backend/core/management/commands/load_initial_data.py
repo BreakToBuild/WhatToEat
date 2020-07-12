@@ -3,6 +3,7 @@ from django.core.management import call_command
 from django.core.management.base import BaseCommand
 
 from backend.core.models import Category, Recepi, RecepiCategories
+from backend.users.services import create_user
 
 
 class Command(BaseCommand):
@@ -27,19 +28,22 @@ class Command(BaseCommand):
                 call_command("reset_db")
             call_command("migrate", interactive=False)
 
+        create_user("user@email.com", "Manuel", "Silva", "123456")
+
         # ---------- EXAMPLES ---------- #
 
-        category = Category.objects.create(name="")
+        category = Category.objects.create(name="Portuguesa")
+        category = Category.objects.create(name="Chinesa")
 
-        # recepi creation
-        recepi = Recepi.objects.create(
-            name="",
-            description="",
-            ingredients=[
-                {"name": "", "portion": "", "unit": "", "comment": ""}
-            ],  # object list
-            preparation="",
-        )
+        # # recepi creation
+        # recepi = Recepi.objects.create(
+        #     name="",
+        #     description="",
+        #     ingredients=[
+        #         {"name": "", "portion": "", "unit": "", "comment": ""}
+        #     ],  # object list
+        #     preparation="",
+        # )
 
-        # adding a category to a recepi
-        RecepiCategories.objects.create(recepi=recepi, categor=category)
+        # # adding a category to a recepi
+        # RecepiCategories.objects.create(recepi=recepi, categor=category)
