@@ -3,7 +3,7 @@ from django.shortcuts import get_object_or_404
 
 from backend.api import APIView
 from backend.core import queries as core_queries, services as core_services
-from backend.core.models import Recepi, RecepiFollower
+from backend.core.models import Category, Recepi, RecepiFollower
 from backend.core.serializers import ListRecepiSerializer, RecepiSerializer
 from rest_framework import status
 
@@ -13,7 +13,9 @@ from rest_framework.response import Response
 
 class RecepiView(APIView):
     def get(self, request):
-        return Response(ListRecepiSerializer(context={"user": request.user}).data)
+        return Response(
+            ListRecepiSerializer(context={"user": request.user}, many=True).data
+        )
 
     def post(self, request):
         serializer = RecepiSerializer(request)
@@ -83,3 +85,10 @@ class RecepiUnfollowView(APIView):
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
         return Response({})
+
+
+class CategoryRecepiView(APIView):
+    def get(self, request):
+        categories = [{"name": c.name, "uid": c.uid} for c in Category.objects.all()]
+
+        return Response(categories)

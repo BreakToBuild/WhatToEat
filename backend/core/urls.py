@@ -19,4 +19,9 @@ urlpatterns = [
         view=views.RecepiUnfollowView.as_view(),
         name="recepi-unfollow",
     ),
+    path(
+        "recepi-categories",
+        view=views.CategoryRecepiView.as_view(),
+        name="recepi-categories",
+    ),
 ]
