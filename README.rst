@@ -35,3 +35,12 @@ You can run the project by typing to following commands:
     $ npm install
 
     $ npm start
+
+
+Load Initial Data
+^^^^^^^^^^^^^^^^^
+
+You can load initial data and reset de db with the following commands:
+
+$ python manage.py load_initial_data --reset **(pass the reset flag if you want to reset the db)**
+

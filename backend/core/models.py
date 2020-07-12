@@ -1,7 +1,12 @@
 from django.contrib.postgres.fields import JSONField
 from django.db import models
 
-from backend.utils import BaseModel, SoftDeleteModel, UserEventTrackModel
+from backend.utils import (
+    AutoSlugMixin,
+    BaseModel,
+    SoftDeleteModel,
+    UserEventTrackModel,
+)
 
 
 # FIXME: it must inherit from UserEventTrackModel
@@ -10,6 +15,10 @@ class Recepi(SoftDeleteModel):
     description = models.TextField(blank=True)
     ingredients = JSONField(blank=True)
     preparation = models.TextField(blank=True)
+    categories = models.ManyToManyField(
+        "core.Category", through="core.RecepiCategories"
+    )
+    created_by = models.ForeignKey("users.User", on_delete=models.PROTECT)
 
     class Meta:
         db_table = "recepi"
@@ -21,6 +30,7 @@ class RecepiFollower(BaseModel):
 
     class Meta:
         db_table = "recepi_follower"
+        unique_together = ("recepi", "user")
 
 
 class RecepiCategories(BaseModel):
@@ -29,10 +39,15 @@ class RecepiCategories(BaseModel):
 
     class Meta:
         db_table = "recepi_categories"
+        unique_together = ("recepi", "category")
 
 
-class Category(BaseModel):
+class Category(AutoSlugMixin, BaseModel):
+    populate_slug_from = "name"
+    slug_field_name = "uid"
+
     name = models.CharField(max_length=200)
+    uid = models.SlugField(unique=True)
 
     class Meta:
         db_table = "category"
