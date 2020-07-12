@@ -1,0 +1,6 @@
+{
+  "baseUrl": "http://dev.localhost:3000/",
+  "projectId": "emrrxo",
+  "defaultCommandTimeout": 4000,
+  "pageLoadTimeout": 40000
+}

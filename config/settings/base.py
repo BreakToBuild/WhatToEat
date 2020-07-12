@@ -26,7 +26,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -148,7 +148,11 @@ LOGOUT_REDIRECT_URL = LOGIN_URL
 # django-cors-headers
 # https://github.com/adamchainz/django-cors-headers
 CORS_ORIGIN_WHITELIST = [
-    "https://dev.localhost:3000",
-    "https://localhost:3000",
-    "https://127.0.0.1:3000",
+    "http://dev.localhost:3000",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",    
 ]
+
+CSRF_TRUSTED_ORIGINS = ["dev.localhost"]
+CORS_ALLOW_CREDENTIALS = True
+CSRF_COOKIE_HTTPONLY = False
