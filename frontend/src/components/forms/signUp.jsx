@@ -138,7 +138,9 @@ class Register extends React.Component {
                 />
               </FormGroup>
               <p className="error-message">{this.state.errorMessage}</p>
-              <Button type="submit">Registar</Button>
+              <Button color="success" type="submit">
+                Registar
+              </Button>
             </Form>
           </Modal.Body>
         </Modal>

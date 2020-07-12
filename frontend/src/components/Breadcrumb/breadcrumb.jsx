@@ -7,17 +7,17 @@ function BreadCrumbs() {
   return (
     <Breadcrumb style={{ padding: "20px" }}>
       <Breadcrumb.Item>
-        <NavLink exact={true} activeClassName="is-active" to="/home">
+        <NavLink activeClassName="is-active" to="/home">
           Inicio
         </NavLink>
       </Breadcrumb.Item>
       <Breadcrumb.Item>
-        <NavLink exact={true} activeClassName="is-active" to="/recipes">
+        <NavLink activeClassName="is-active" to="/recipes">
           Receitas
         </NavLink>
       </Breadcrumb.Item>
       <Breadcrumb.Item>
-        <NavLink exact={true} activeClassName="is-active" to="/my-recipes">
+        <NavLink activeClassName="is-active" to="/my-recipes">
           Minhas receitas
         </NavLink>
       </Breadcrumb.Item>

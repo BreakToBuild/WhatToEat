@@ -107,7 +107,7 @@ class Login extends React.Component {
                 />
               </FormGroup>
               <p className="error-message">{this.state.errorMessage}</p>
-              <Button>Entrar</Button>
+              <Button color="success">Entrar</Button>
             </Form>
           </Modal.Body>
         </Modal>

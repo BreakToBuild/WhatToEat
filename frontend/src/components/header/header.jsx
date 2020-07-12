@@ -7,7 +7,7 @@ function Header() {
   return (
     <div className="App">
       <Jumbotron className="bg-img">
-        <h1 className="Principal">Saiba sempre o que cozinhar</h1>
+        <h1 className="Principal">Saiba sempre o que comer</h1>
         <p className="parag">e como cozinhar</p>
       </Jumbotron>
     </div>

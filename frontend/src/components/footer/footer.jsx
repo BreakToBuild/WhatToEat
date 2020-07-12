@@ -1,6 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
-import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
+import { FaFacebook } from "react-icons/fa";
 import "./footer.css";
 
 function Footer() {
@@ -11,12 +11,6 @@ function Footer() {
           <div className="row">
             <div className="item">
               <FaFacebook />
-            </div>
-            <div className="item">
-              <FaTwitter />
-            </div>
-            <div className="item">
-              <FaInstagram />
             </div>
           </div>
           <div>

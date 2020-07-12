@@ -34,9 +34,18 @@ Cypress.Commands.add("RegisterUserApplication", () => {
 });
 
 Cypress.Commands.add("loginToApplication", () => {
-  cy.visit("http://dev.localhost:3000/login");
+  cy.visit("/");
+  cy.server();
+  cy.route("POST", "**/login").as("login");
+
   cy.get("[data-cy=Login]").click();
-  cy.get('[name="email"]').type("testejoao@gmail.com");
-  cy.get('[name="password"]').type("simsim");
+  cy.get('[name="email"]').type("cypressteste123@gmail.com");
+  cy.get('[name="password"]').type("adminteste");
   cy.get("form").submit();
+
+  cy.wait("@login");
+  cy.get("@login").then((xhr) => {
+    console.log(xhr);
+    expect(xhr.status).to.equal(200);
+  });
 });
