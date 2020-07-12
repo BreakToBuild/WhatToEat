@@ -50,7 +50,7 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     "backend.core.apps.CoreConfig",
     "backend.users.apps.UsersConfig",
-    "backend.authentications.apps.AuthenticationsConfig",
+    "backend.authentication.apps.AuthenticationConfig",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS

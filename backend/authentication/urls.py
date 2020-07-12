@@ -1,6 +1,8 @@
 from django.urls import path
 
-from backend.authentications import views
+from backend.authentication import views
+
+app_name = "authentication"
 
 urlpatterns = [
     path("login", view=views.LoginView.as_view(), name="login"),
