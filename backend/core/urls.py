@@ -5,23 +5,25 @@ from backend.core import views
 app_name = "core"
 
 urlpatterns = [
-    path("recepi", view=views.RecepiView.as_view(), name="recepi"),
+    path("recipe", view=views.RecipeView.as_view(), name="recipe"),
     path(
-        "recepi/<int:id>", view=views.RecepiDetailView.as_view(), name="recepi-detail"
+        "recipe/<int:recipe_id>",
+        view=views.RecipeDetailView.as_view(),
+        name="recipe-detail",
     ),
     path(
-        "recepi/<int:id>/follow",
-        view=views.RecepiFollowView.as_view(),
-        name="recepi-follow",
+        "recipe/<int:recipe_id>/follow",
+        view=views.RecipeFollowView.as_view(),
+        name="recipe-follow",
     ),
     path(
-        "recepi/<int:id>/unfollow",
-        view=views.RecepiUnfollowView.as_view(),
-        name="recepi-unfollow",
+        "recipe/<int:recipe_id>/unfollow",
+        view=views.RecipeUnfollowView.as_view(),
+        name="recipe-unfollow",
     ),
     path(
-        "recepi-categories",
-        view=views.CategoryRecepiView.as_view(),
-        name="recepi-categories",
+        "recipe-categories",
+        view=views.CategoryRecipeView.as_view(),
+        name="recipe-categories",
     ),
 ]

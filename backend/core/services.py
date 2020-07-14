@@ -1,10 +1,10 @@
 from typing import List
 
-from backend.core.models import Category, Recepi, RecepiFollower
+from backend.core.models import Category, Recipe, RecipeFollower
 from backend.users.models import User
 
 
-def create_recepi(
+def create_recipe(
     user: User,
     name: str,
     description: str,
@@ -12,8 +12,8 @@ def create_recepi(
     preparation: str,
     categories: List[Category],
 ):
-    return Recepi.objects.create(
-        user=user,
+    recipe = Recipe.objects.create(
+        created_by=user,
         name=name,
         description=description,
         ingredients=ingredients,
@@ -21,27 +21,30 @@ def create_recepi(
         categories=categories,
     )
 
+    return recipe
 
-def update_recepi(
-    recepi: Recepi,
+
+def update_recipe(
+    recipe: Recipe,
     name: str,
     description: str,
     ingredients: dict,
     preparation: str,
     categories: List[Category],
 ):
-    return recepi.objects.update(
-        name=name,
-        description=description,
-        ingredients=ingredients,
-        preparation=preparation,
-        categories=categories,
-    )
+    recipe.name = name
+    recipe.description = description
+    recipe.ingredients = ingredients
+    recipe.preparation = preparation
+    recipe.categories = categories or []
+    recipe.save()
+
+    return recipe
 
 
-def follow_recepi(recepi: Recepi, user: User):
-    return RecepiFollower.objects.get_or_create(recepi=recepi, user=user)
+def follow_recipe(recipe: Recipe, user: User):
+    return RecipeFollower.objects.get_or_create(recipe=recipe, user=user)
 
 
-def unfollow_recepi(recepi: Recepi, user: User):
-    RecepiFollower.objects.get(recepi=recepi, user=user).delete()
+def unfollow_recipe(recipe: Recipe, user: User):
+    RecipeFollower.objects.get(recipe=recipe, user=user).delete()

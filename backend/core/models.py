@@ -10,36 +10,25 @@ from backend.utils import (
 
 
 # FIXME: it must inherit from UserEventTrackModel
-class Recepi(SoftDeleteModel):
+class Recipe(SoftDeleteModel):
     name = models.CharField(max_length=200)
     description = models.TextField(blank=True)
-    ingredients = JSONField(blank=True)
-    preparation = models.TextField(blank=True)
-    categories = models.ManyToManyField(
-        "core.Category", through="core.RecepiCategories"
-    )
+    ingredients = models.TextField(blank=True, null=True)
+    preparation = models.TextField(blank=True, null=True)
+    categories = JSONField(blank=True, default=dict)
     created_by = models.ForeignKey("users.User", on_delete=models.PROTECT)
 
     class Meta:
-        db_table = "recepi"
+        db_table = "recipe"
 
 
-class RecepiFollower(BaseModel):
-    recepi = models.ForeignKey("core.Recepi", on_delete=models.PROTECT)
+class RecipeFollower(BaseModel):
+    recipe = models.ForeignKey("core.Recipe", on_delete=models.PROTECT)
     user = models.ForeignKey("users.User", on_delete=models.PROTECT)
 
     class Meta:
-        db_table = "recepi_follower"
-        unique_together = ("recepi", "user")
-
-
-class RecepiCategories(BaseModel):
-    recepi = models.ForeignKey("core.Recepi", on_delete=models.CASCADE)
-    category = models.ForeignKey("core.Category", on_delete=models.PROTECT)
-
-    class Meta:
-        db_table = "recepi_categories"
-        unique_together = ("recepi", "category")
+        db_table = "recipe_follower"
+        unique_together = ("recipe", "user")
 
 
 class Category(AutoSlugMixin, BaseModel):
