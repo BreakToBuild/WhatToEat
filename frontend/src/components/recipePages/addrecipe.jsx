@@ -3,21 +3,53 @@ import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import { Form, FormGroup, Input, Label } from "reactstrap";
 import "./recipes.css";
+import axios from "axios";
+import { recepi } from "../../constants";
+import Cookies from "js-cookie";
 
 const AddRecipe = (props) => {
-  const initialFormState = {
-    id: null,
-    nome: "",
-    descricao: "",
-    ingredientes: "",
-    preparacao: "",
+  const [recipe, setRecipes] = useState({
+    name: "",
+    description: "",
+    ingredients: [
+      {
+        name: "",
+        unit: "",
+        comment: "",
+        portion: "",
+      },
+    ],
+    preparation: "",
+  });
+
+  const InsertRecipe = (e) => {
+    let csrftokenCookie = Cookies.get("csrftoken");
+
+    e.preventDefault();
+    const dadosReceita = {
+      name: recipe.name,
+      description: recipe.description,
+      ingredients: recipe.ingredients,
+      preparations: recipe.preparation,
+    };
+    axios(recepi, {
+      method: "post",
+      data: dadosReceita,
+      withCredentials: true,
+      headers: {
+        "X-CSRFToken": csrftokenCookie,
+      },
+    })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
-  const [recipe, setRecipes] = useState(initialFormState);
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-
-    setRecipes({ ...recipe, [name]: value });
+  const handleChange = (e) => {
+    setRecipes({ ...recipe, [e.target.name]: e.target.value });
   };
 
   const [show, setShow] = useState(false);
@@ -37,25 +69,15 @@ const AddRecipe = (props) => {
           </div>
         </Modal.Header>
         <Modal.Body>
-          <Form
-            method="POST"
-            onSubmit={(event) => {
-              event.preventDefault();
-              if (!recipe.nome || !recipe.descricao) return;
-
-              props.addRecipes(recipe);
-              setRecipes(initialFormState);
-              handleClose();
-            }}
-          >
+          <Form method="POST" onSubmit={InsertRecipe}>
             <FormGroup>
               <Label for="nomeReceita">Nome </Label>
               <Input
                 type="text"
-                name="nome"
+                name="name"
                 id="nomeReceita"
-                value={recipe.nome}
-                onChange={handleInputChange}
+                value={recipe.name}
+                onChange={handleChange}
                 required
               />
             </FormGroup>
@@ -63,10 +85,10 @@ const AddRecipe = (props) => {
               <Label for="descricaoReceita">Descrição</Label>
               <Input
                 type="textarea"
-                name="descricao"
+                name="description"
                 id="descricaoReceita"
-                value={recipe.descricao}
-                onChange={handleInputChange}
+                value={recipe.description}
+                onChange={handleChange}
                 required
               />
             </FormGroup>
@@ -75,10 +97,10 @@ const AddRecipe = (props) => {
               <Input
                 rows={5}
                 type="textarea"
-                name="ingredientes"
+                name="ingredients"
                 id="ingredientesReceita"
-                value={recipe.ingredientes}
-                onChange={handleInputChange}
+                value={recipe.ingredients}
+                onChange={handleChange}
                 required
               />
             </FormGroup>
@@ -87,10 +109,10 @@ const AddRecipe = (props) => {
               <Input
                 rows={5}
                 type="textarea"
-                name="preparacao"
+                name="preparation"
                 id="preparacaoReceita"
-                value={recipe.preparacao}
-                onChange={handleInputChange}
+                value={recipe.preparation}
+                onChange={handleChange}
                 required
               />
             </FormGroup>

@@ -18,6 +18,7 @@ class RecepiView(APIView):
         )
 
     def post(self, request):
+        __import__("ipdb").set_trace()
         serializer = RecepiSerializer(request)
         serializer.is_valid(raise_exception=True)
         validated_data = serializer.validated_data

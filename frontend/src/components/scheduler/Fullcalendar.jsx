@@ -27,6 +27,7 @@ class Fullcalendar extends React.Component {
       currentEvents: [],
     };
   }
+
   handleChange(e) {
     let formFields = { ...this.state.formFields };
     formFields[e.target.name] = e.target.value;
@@ -57,8 +58,8 @@ class Fullcalendar extends React.Component {
         end: selectInfo.endStr,
         allDay: selectInfo.allDay,
       });
-      this.setSubmitAlert(true);
-      this.setModalState(false);
+      this.SubmitAlert(true);
+      this.ModalState(false);
     }
   };
 
@@ -69,20 +70,20 @@ class Fullcalendar extends React.Component {
   };
 
   handleDismiss = () => {
-    this.setDeleteAlert(false);
-    this.setSubmitAlert(false);
+    this.DeleteAlert(false);
+    this.SubmitAlert(false);
     this.setState({
       selectInfo: undefined,
     });
   };
 
-  setSubmitAlert = (state) => {
+  SubmitAlert = (state) => {
     this.setState({
       showSubmit: state,
     });
   };
 
-  setDeleteAlert = (state) => {
+  DeleteAlert = (state) => {
     this.setState({
       showDelete: state,
     });
@@ -92,7 +93,7 @@ class Fullcalendar extends React.Component {
 
   handleEventClick = (clickInfo) => {
     if (clickInfo) {
-      this.setDeleteAlert(true);
+      this.DeleteAlert(true);
     }
     clickInfo.event.remove();
   };
