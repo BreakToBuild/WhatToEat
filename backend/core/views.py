@@ -13,13 +13,15 @@ from rest_framework.response import Response
 
 class RecipeView(APIView):
     def get(self, request):
-
         data = {
             "created": RecipeSerializer(
                 core_queries.get_created_recipes(request.user), many=True
             ).data,
             "following": RecipeSerializer(
                 core_queries.get_following_recipes(request.user), many=True
+            ).data,
+            "other_users": RecipeSerializer(
+                core_queries.get_other_users_recipes(request.user), many=True
             ).data,
         }
 

@@ -19,3 +19,7 @@ def get_created_recipes(user: User):
 
 def get_following_recipes(user: User):
     return [r.recipe for r in RecipeFollower.objects.filter(user=user)]
+
+
+def get_other_users_recipes(user: User):
+    return Recipe.objects.all().exclude(created_by=user)
