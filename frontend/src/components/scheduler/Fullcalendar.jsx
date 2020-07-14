@@ -16,36 +16,36 @@ class Fullcalendar extends React.Component {
   constructor() {
     super();
     this.state = {
+      formFields: {
+        nome: "",
+      },
       modalShow: false,
       weekendsVisible: true,
-      show2: false,
-      show: false,
-      formField: {
-        title: "",
-      },
-
+      showSubmit: false,
+      showDelete: false,
+      selectInfo: undefined,
       currentEvents: [],
     };
   }
-
-  inputChangeHandler = (e) => {
-    let formField = { ...this.state.formField };
-    formField[e.target.name] = e.target.value;
+  handleChange(e) {
+    let formFields = { ...this.state.formFields };
+    formFields[e.target.name] = e.target.value;
     this.setState({
-      formField,
+      formFields,
     });
-  };
+  }
 
   handleDateSelect = (selectInfo: DateSelectArg) => {
     this.setModalState(true);
-    console.log(selectInfo);
+    this.setState({
+      selectInfo,
+    });
   };
 
-  formHandler = (formField, selectInfo: DateSelectArg) => {
-    let title = this.state.formField.title;
-    console.log(title);
+  formHandler = (e, formFields, selectInfo: DateSelectArg) => {
+    e.preventDefault();
+    let title = this.state.formFields.nome;
     let calendarApi = selectInfo.view.calendar;
-
     calendarApi.unselect(); // clear date selection
 
     if (title) {
@@ -57,46 +57,47 @@ class Fullcalendar extends React.Component {
         end: selectInfo.endStr,
         allDay: selectInfo.allDay,
       });
-      this.setAlert2State(true);
+      this.setSubmitAlert(true);
+      this.setModalState(false);
     }
   };
 
   setModalState = (state) => {
     this.setState({
       modalShow: state,
-      formField: {
-        title: "",
-      },
     });
   };
 
   handleDismiss = () => {
-    console.log("okok");
-    this.setAlertState(false);
-    this.setAlert2State(false);
-  };
-  setAlert2State = (state) => {
+    this.setDeleteAlert(false);
+    this.setSubmitAlert(false);
     this.setState({
-      show2: state,
-    });
-  };
-  setAlertState = (state) => {
-    this.setState({
-      show: state,
+      selectInfo: undefined,
     });
   };
 
+  setSubmitAlert = (state) => {
+    this.setState({
+      showSubmit: state,
+    });
+  };
+
+  setDeleteAlert = (state) => {
+    this.setState({
+      showDelete: state,
+    });
+  };
+
+  //Apagar Evento
+
   handleEventClick = (clickInfo) => {
     if (clickInfo) {
-      this.setAlertState(true);
+      this.setDeleteAlert(true);
     }
     clickInfo.event.remove();
   };
 
-  handleDateSelect = () => {
-    this.setModalState(true);
-  };
-
+  //Mostrar eventos
   handleEvents = (events) => {
     this.setState({
       currentEvents: events,
@@ -104,14 +105,12 @@ class Fullcalendar extends React.Component {
   };
 
   render() {
-    let selectInfo;
-
     return (
       <div>
         <Alert
           variant="success"
           onClose={this.handleDismiss}
-          show={this.state.show2}
+          show={this.state.showSubmit}
           dismissible
         >
           <Alert.Heading>Evento adicionado com sucesso</Alert.Heading>
@@ -126,9 +125,8 @@ class Fullcalendar extends React.Component {
         <Alert
           variant="danger"
           onClose={this.handleDismiss}
-          show={this.state.show}
+          show={this.state.showDelete}
           dismissible
-          autohide
         >
           <Alert.Heading>Evento apagado com sucesso</Alert.Heading>
           <hr />
@@ -173,30 +171,44 @@ class Fullcalendar extends React.Component {
         >
           <Modal.Header closeButton>
             <div>
-              <h1 className="logText">Entre na sua conta</h1>
+              <h1 className="logText">Adicionar evento</h1>
             </div>
           </Modal.Header>
           <Modal.Body>
             <Form
               method="POST"
               onSubmit={(e) =>
-                this.formHandler(e, this.state.formField, selectInfo)
+                this.formHandler(
+                  e,
+                  this.state.formFields,
+                  this.state.selectInfo
+                )
               }
             >
               <FormGroup>
-                <Label for="title">Nome da receita</Label>
+                <Label for="SelectRecipe">
+                  Escolha a receita que quer utilizar
+                </Label>
                 <Input
-                  type="text"
-                  name="title"
-                  id="title"
-                  onChange={(e) => this.inputChangeHandler(e)}
-                  value={this.state.formField.title}
+                  type="select"
+                  value={this.state.formFields.nome}
+                  onChange={(e) => this.handleChange(e)}
+                  name="nome"
+                  id="SelectRecipe"
                   required
-                />
+                >
+                  <option>Sardinhas na cataplana</option>
+                  <option>Nem tem piada</option>
+                  <option>Não gosto</option>
+                  <option>4</option>
+                  <option>5</option>
+                </Input>
               </FormGroup>
-              <Button type="submit" color="success">
-                Entrar
-              </Button>
+              <Modal.Footer>
+                <Button type="submit" color="success">
+                  Entrar
+                </Button>
+              </Modal.Footer>
             </Form>
           </Modal.Body>
         </Modal>

@@ -4,15 +4,26 @@ import React from "react";
 import { FaCookie, FaCookieBite, FaHome } from "react-icons/fa";
 import { GiCookingPot } from "react-icons/gi";
 import { NavLink } from "react-router-dom";
+import Logout from "../forms/logout.jsx";
 
 function Sidnav() {
   return (
-    <SideNav expanded="true" style={{ background: "#000000" }}>
-      <SideNav.Toggle />
+    <SideNav expanded style={{ background: "#000000" }}>
+      <NavItem>
+        <h3
+          style={{
+            align: "center",
+            padding: "60px 30px 70px",
+            color: "white",
+          }}
+        >
+          What To Eat
+        </h3>
+      </NavItem>
       <SideNav.Nav>
         <NavItem eventKey="home">
           <NavIcon>
-            <FaHome style={{ fontSize: "1.75em" }} />
+            <FaHome style={{ fontSize: "1.75em", color: "white" }} />
           </NavIcon>
           <NavLink to="/home" style={{ color: "white" }}>
             Inicio
@@ -21,13 +32,16 @@ function Sidnav() {
 
         <NavItem eventKey="Recipes">
           <NavIcon>
-            <GiCookingPot style={{ fontSize: "30.5px" }} />
+            <GiCookingPot style={{ fontSize: "30.5px", color: "white" }} />
           </NavIcon>
-          <NavText>Receitas</NavText>
+          <NavText style={{ color: "white" }}>Receitas</NavText>
         </NavItem>
-        <NavItem eventKey="allRecipes" style={{ padding: "11.1px" }}>
+        <NavItem
+          eventKey="allRecipes"
+          style={{ padding: "11.1px", color: "white" }}
+        >
           <NavIcon>
-            <FaCookieBite style={{ fontSize: "15px" }} />
+            <FaCookieBite style={{ fontSize: "15px", color: "white" }} />
           </NavIcon>
           <NavLink to="/recipes" style={{ color: "white" }}>
             Todas as receitas
@@ -42,6 +56,7 @@ function Sidnav() {
           </NavLink>
         </NavItem>
       </SideNav.Nav>
+      <Logout />
     </SideNav>
   );
 }

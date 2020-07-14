@@ -1,31 +1,45 @@
-@import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Poppins&display=swap");
 
 .logText {
-    margin: auto;
-    font-family: 'Poppins', sans-serif;
-    font-size: 30px;
-    color:black;
+  margin: auto;
+  font-family: "Poppins", sans-serif;
+  font-size: 30px;
+  color: black;
 }
 
-.Image-user{
-    width: 25%;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
+.Image-user {
+  width: 25%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
 }
-p{
-    font-size: 20px;
-    text-align: center;
-    font-family: 'Poppins', sans-serif;
+p {
+  font-size: 20px;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
 }
-.modal{
-        font-family: 'Poppins', sans-serif;
-        font-size: 15px;
-}
-
-.error-message{
-    color:red;
-    font-size:15px;
-    text-align:left;
+.modal {
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
 }
 
+.error-message {
+  color: red;
+  font-size: 15px;
+  text-align: left;
+}
+
+.SignOutButton {
+  background-color: black; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}

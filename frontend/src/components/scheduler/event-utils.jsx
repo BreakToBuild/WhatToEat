@@ -11,18 +11,6 @@ export const INITIAL_EVENTS: EventInput[] = [
     color: "black",
     editable: true,
   },
-  {
-    id: createEventId(),
-    title: "Sardinhas na cataplana",
-    date: "2020-07-07",
-    allDay: "true",
-  },
-  {
-    id: createEventId(),
-    title: "sim",
-    date: "2020-07-01",
-    allDay: "true",
-  },
 ];
 
 export function createEventId() {

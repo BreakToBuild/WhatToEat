@@ -14,7 +14,7 @@ function Dash() {
       </div>
 
       <div className="scheduler">
-        <div style={{ padding: "100px" }}>
+        <div>
           <Fullcalendar />
         </div>
       </div>

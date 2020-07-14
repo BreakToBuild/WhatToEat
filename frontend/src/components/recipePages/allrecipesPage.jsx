@@ -5,6 +5,7 @@ import Sidnav from "../sideNav/Sidenav";
 import BreadCrumbs from "..//Breadcrumb/breadcrumb.jsx";
 import AddRecipesForm from "../recipePages/addrecipe.jsx";
 import EditRecipeForm from "../recipePages/editrecipe.jsx";
+
 const AllRecipes = () => {
   const recipesData = [
     {
@@ -87,6 +88,7 @@ const AllRecipes = () => {
       </div>
       <div className="main">
         <BreadCrumbs />
+
         <div className="container-fluid">
           <TableRec
             recipes={recipes}

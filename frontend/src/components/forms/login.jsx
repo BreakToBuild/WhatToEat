@@ -3,7 +3,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
 import { Modal } from "react-bootstrap";
 import { Button, Form, FormGroup, Input, Label } from "reactstrap";
-import { login } from "../../constants";
+import { login, checkauth } from "../../constants";
+import Cookies from "js-cookie";
 
 import "./login.css";
 
@@ -26,9 +27,8 @@ class Login extends React.Component {
     this.setState({
       errorMessage: "",
       formFields,
-    });
+    }); //
   };
-
   formHandler = (e, formFields) => {
     e.preventDefault();
     axios(login, {
@@ -37,8 +37,17 @@ class Login extends React.Component {
       withCredentials: true,
     })
       .then((response) => {
+        let csrftokenCookie = Cookies.get("csrftoken");
         console.log(response);
-        window.location.replace("/home");
+        axios(checkauth, {
+          method: "GET",
+          withCredentials: true,
+          headers: {
+            "X-CSRFToken": csrftokenCookie,
+          },
+        }).then((response) => {
+          window.location.replace("/home");
+        });
       })
       .catch((error) => {
         console.log(error);
