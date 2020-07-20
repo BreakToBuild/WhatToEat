@@ -4,17 +4,23 @@ import { Table, Button, Modal } from "react-bootstrap";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { recipes } from "../../constants";
-import { Form, FormGroup, Input, Label } from "reactstrap";
-
 import Cookies from "js-cookie";
+import { Form, FormGroup, Input, Label } from "reactstrap";
+import styled from "styled-components";
 
-const TableRec = (props) => {
-  const [data, setData] = useState({});
-  const [readOnly, setReadOnly] = useState(false);
-  const [show, setShow] = useState(false);
+const Actions = styled.div`
+  display: flex;
+  flex-direction: row-reverse;
+`;
+
+const MyTableRec = (props) => {
+  const [data, setData] = useState([]);
   const [recipe, setRecipe] = useState();
+  const [show, setShow] = useState(false);
+  const [readOnly, setReadOnly] = useState(false);
 
   const handleShow = () => setShow(true);
+
   const handleClose = () => {
     setShow(false);
     setReadOnly(false);
@@ -27,29 +33,49 @@ const TableRec = (props) => {
         method: "get",
         withCredentials: true,
       });
-      setData(result.data);
+      setData(result.data.created);
     };
     GetData();
   }, []);
 
-  const alreadyFollowing = (item) => {
-    return !!data.following.find((recipe) => {
-      return recipe.id === item.id;
-    });
-  };
-  const handleUnfollow = (id) => {
+  const deleteRecipe = (id) => {
     let csrftokenCookie = Cookies.get("csrftoken");
-    axios("http://dev.localhost:8000/api/recipe/" + id + "/unfollow", {
-      method: "post",
+    axios("http://dev.localhost:8000/api/recipe/" + id, {
+      method: "delete",
       withCredentials: true,
       headers: {
         "X-CSRFToken": csrftokenCookie,
       },
     }).then((result) => {
+      console.log("eliminado");
       window.location.reload(true);
     });
   };
-
+  const editRecipe = (recipe) => {
+    handleShow();
+    setRecipe(recipe);
+  };
+  const updateRecipe = (recipe) => {
+    let csrftokenCookie = Cookies.get("csrftoken");
+    const Receitas = {
+      id: recipe.id,
+      name: recipe.name,
+      description: recipe.description,
+      ingredients: recipe.ingredients,
+      preparation: recipe.preparation,
+    };
+    axios(`http://dev.localhost:8000/api/recipe/${recipe.id}`, {
+      method: "put",
+      withCredentials: true,
+      data: Receitas,
+      headers: {
+        "X-CSRFToken": csrftokenCookie,
+      },
+    }).then((result) => {
+      console.log("eliminado");
+      window.location.reload(true);
+    });
+  };
   const viewRecipe = (recipe) => {
     handleShow();
     setRecipe(recipe);
@@ -58,19 +84,7 @@ const TableRec = (props) => {
   const onChange = (e) => {
     setRecipe({ ...recipe, [e.target.name]: e.target.value });
   };
-  const handleFollow = (id) => {
-    let csrftokenCookie = Cookies.get("csrftoken");
-    axios("http://dev.localhost:8000/api/recipe/" + id + "/follow", {
-      method: "post",
-      withCredentials: true,
-      headers: {
-        "X-CSRFToken": csrftokenCookie,
-      },
-    }).then((result) => {
-      console.log("Seguido");
-      window.location.reload(true);
-    });
-  };
+
   return (
     <>
       <div>
@@ -90,48 +104,46 @@ const TableRec = (props) => {
             </tr>
           </thead>
           <tbody>
-            {data.other_users &&
-              data.other_users.map((item, id) => {
-                return (
-                  <tr style={{ fontSize: "13.5px" }} key={item.id}>
-                    <td>{item.id}</td>
-                    <td>{item.name}</td>
-                    <td>{item.description}</td>
-                    <td>
-                      {!alreadyFollowing(item) && (
-                        <Button
-                          variant="success"
-                          onClick={() => {
-                            handleFollow(item.id);
-                          }}
-                        >
-                          Seguir
-                        </Button>
-                      )}
-                      {alreadyFollowing(item) && (
-                        <Button
-                          variant="danger"
-                          onClick={() => {
-                            handleUnfollow(item.id);
-                          }}
-                        >
-                          Deixar de seguir
-                        </Button>
-                      )}
-                      <Button
-                        style={{ marginLeft: "10px" }}
-                        variant="info"
-                        onClick={() => {
-                          viewRecipe(item);
-                        }}
-                      >
-                        Ver receita
-                      </Button>
-                    </td>
-                  </tr>
-                );
-              })}
+            {data.map((item, id) => {
+              return (
+                <tr style={{ fontSize: "13.5px" }} key={item.id}>
+                  <td>{item.id}</td>
+                  <td>{item.name}</td>
+                  <td>{item.description}</td>
+                  <td>
+                    <Button
+                      style={{ marginLeft: "10px" }}
+                      variant="info"
+                      onClick={() => {
+                        viewRecipe(item);
+                      }}
+                    >
+                      Ver receita
+                    </Button>
+                    <Button
+                      style={{ marginLeft: "10px" }}
+                      variant="success"
+                      onClick={() => {
+                        editRecipe(item);
+                      }}
+                    >
+                      Editar
+                    </Button>
+                    <Button
+                      variant="danger"
+                      style={{ marginLeft: "10px" }}
+                      onClick={() => {
+                        deleteRecipe(item.id);
+                      }}
+                    >
+                      Eliminar
+                    </Button>
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
+          {/* MODAL EDITAR */}
         </Table>
       </div>
       {show && (
@@ -144,7 +156,12 @@ const TableRec = (props) => {
               </div>
             </Modal.Header>
             <Modal.Body>
-              <Form>
+              <Form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  updateRecipe(recipe);
+                }}
+              >
                 <FormGroup>
                   <Label for="nomeReceita">Nome </Label>
                   <Input
@@ -191,9 +208,20 @@ const TableRec = (props) => {
                     readOnly={readOnly}
                   />
                 </FormGroup>
-                <Button variant="danger" type="submit" onClick={handleClose}>
-                  Fechar
-                </Button>
+                <Actions>
+                  {!readOnly && (
+                    <Button
+                      variant="success"
+                      type="submit"
+                      style={{ marginLeft: "15px" }}
+                    >
+                      Guardar
+                    </Button>
+                  )}
+                  <Button variant="danger" type="submit" onClick={handleClose}>
+                    Fechar
+                  </Button>
+                </Actions>
               </Form>
             </Modal.Body>
           </Modal>
@@ -203,4 +231,4 @@ const TableRec = (props) => {
   );
 };
 
-export default TableRec;
+export default MyTableRec;

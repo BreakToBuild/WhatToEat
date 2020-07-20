@@ -1,10 +1,10 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
-import TableRec from "../RecipeTable/TableRec";
+import FollowedRecipesTable from "../RecipeTable/FollowedRecipes";
 import Sidnav from "../sideNav/Sidenav";
 import BreadCrumbs from "..//Breadcrumb/breadcrumb.jsx";
 
-const AllRecipes = () => {
+const FollowedRecipes = () => {
   return (
     <div>
       <div>
@@ -14,11 +14,11 @@ const AllRecipes = () => {
         <BreadCrumbs />
 
         <div className="container-fluid">
-          <TableRec />
+          <FollowedRecipesTable />
         </div>
       </div>
     </div>
   );
 };
 
-export default AllRecipes;
+export default FollowedRecipes;

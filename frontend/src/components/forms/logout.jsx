@@ -30,7 +30,7 @@ class Logout extends Component {
     return (
       <>
         <button className="SignOutButton" onClick={signOutHandle}>
-          SignOut
+          Logout
         </button>
       </>
     );

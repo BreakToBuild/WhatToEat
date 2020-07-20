@@ -2,7 +2,7 @@ import SideNav, { NavIcon, NavItem, NavText } from "@trendmicro/react-sidenav";
 import "@trendmicro/react-sidenav/dist/react-sidenav.css";
 import React from "react";
 import { FaCookie, FaCookieBite, FaHome } from "react-icons/fa";
-import { GiCookingPot } from "react-icons/gi";
+import { GiCookingPot, GiCookie } from "react-icons/gi";
 import { NavLink } from "react-router-dom";
 import Logout from "../forms/logout.jsx";
 
@@ -49,10 +49,18 @@ function Sidnav() {
         </NavItem>
         <NavItem eventKey="myRecipes" style={{ padding: "11.1px" }}>
           <NavIcon>
-            <FaCookie style={{ fontSize: "15px" }} />
+            <FaCookie style={{ fontSize: "15px", color: "white" }} />
           </NavIcon>
           <NavLink to="my-recipes" style={{ color: "white" }}>
             Minhas receitas
+          </NavLink>
+        </NavItem>
+        <NavItem eventKey="myRecipes" style={{ padding: "11.1px" }}>
+          <NavIcon>
+            <GiCookie style={{ fontSize: "18px", color: "white" }} />
+          </NavIcon>
+          <NavLink to="followedRecipes" style={{ color: "white" }}>
+            Receitas seguidas
           </NavLink>
         </NavItem>
       </SideNav.Nav>

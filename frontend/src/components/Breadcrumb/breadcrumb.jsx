@@ -21,6 +21,11 @@ function BreadCrumbs() {
           Minhas receitas
         </NavLink>
       </Breadcrumb.Item>
+      <Breadcrumb.Item>
+        <NavLink activeClassName="is-active" to="/followedRecipes">
+          Receitas seguidas
+        </NavLink>
+      </Breadcrumb.Item>
     </Breadcrumb>
   );
 }

@@ -11,6 +11,8 @@ import listPlugin from "@fullcalendar/list";
 import { INITIAL_EVENTS, createEventId } from "./event-utils";
 import { Alert, Button, Modal } from "react-bootstrap";
 import { Form, FormGroup, Input, Label } from "reactstrap";
+import axios from "axios";
+import Cookies from "js-cookie";
 
 class Fullcalendar extends React.Component {
   constructor() {
@@ -19,6 +21,7 @@ class Fullcalendar extends React.Component {
       formFields: {
         nome: "",
       },
+      recipes: [],
       modalShow: false,
       weekendsVisible: true,
       showSubmit: false,
@@ -26,6 +29,24 @@ class Fullcalendar extends React.Component {
       selectInfo: undefined,
       currentEvents: [],
     };
+  }
+  componentDidMount() {
+    console.log("here");
+    let csrftokenCookie = Cookies.get("csrftoken");
+    axios("http://dev.localhost:8000/api/recipe", {
+      method: "get",
+      withCredentials: true,
+      headers: {
+        "X-CSRFToken": csrftokenCookie,
+      },
+    }).then((result) => {
+      this.setState({ recipes: this.joinedRecipes(result.data) });
+    });
+  }
+
+  joinedRecipes(data = {}) {
+    const { created = [], following = [] } = data;
+    return [...created, ...following];
   }
 
   handleChange(e) {
@@ -43,8 +64,7 @@ class Fullcalendar extends React.Component {
     });
   };
 
-  formHandler = (e, formFields, selectInfo: DateSelectArg) => {
-    e.preventDefault();
+  formHandler = (formFields, selectInfo: DateSelectArg) => {
     let title = this.state.formFields.nome;
     let calendarApi = selectInfo.view.calendar;
     calendarApi.unselect(); // clear date selection
@@ -59,7 +79,7 @@ class Fullcalendar extends React.Component {
         allDay: selectInfo.allDay,
       });
       this.SubmitAlert(true);
-      this.ModalState(false);
+      this.setModalState(false);
     }
   };
 
@@ -106,6 +126,7 @@ class Fullcalendar extends React.Component {
   };
 
   render() {
+    console.log(this.state.recipes);
     return (
       <div>
         <Alert
@@ -154,7 +175,6 @@ class Fullcalendar extends React.Component {
           themeSystem="bootstrap"
           selectMirror={true}
           dayMaxEvents={true}
-          eventAdd={this.formHandler}
           selectable={true}
           droppable={true}
           plugins={[
@@ -178,13 +198,10 @@ class Fullcalendar extends React.Component {
           <Modal.Body>
             <Form
               method="POST"
-              onSubmit={(e) =>
-                this.formHandler(
-                  e,
-                  this.state.formFields,
-                  this.state.selectInfo
-                )
-              }
+              onSubmit={(e) => {
+                e.preventDefault();
+                this.formHandler(this.state.formFields, this.state.selectInfo);
+              }}
             >
               <FormGroup>
                 <Label for="SelectRecipe">
@@ -198,16 +215,14 @@ class Fullcalendar extends React.Component {
                   id="SelectRecipe"
                   required
                 >
-                  <option>Sardinhas na cataplana</option>
-                  <option>Nem tem piada</option>
-                  <option>Não gosto</option>
-                  <option>4</option>
-                  <option>5</option>
+                  {this.state.recipes.map((recipe) => {
+                    return <option>{recipe.name}</option>;
+                  })}
                 </Input>
               </FormGroup>
               <Modal.Footer>
                 <Button type="submit" color="success">
-                  Entrar
+                  Adicionar
                 </Button>
               </Modal.Footer>
             </Form>

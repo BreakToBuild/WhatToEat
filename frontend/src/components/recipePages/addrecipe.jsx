@@ -4,21 +4,14 @@ import { Modal, Button } from "react-bootstrap";
 import { Form, FormGroup, Input, Label } from "reactstrap";
 import "./recipes.css";
 import axios from "axios";
-import { recepi } from "../../constants";
+import { recipes } from "../../constants";
 import Cookies from "js-cookie";
 
 const AddRecipe = (props) => {
   const [recipe, setRecipes] = useState({
     name: "",
     description: "",
-    ingredients: [
-      {
-        name: "",
-        unit: "",
-        comment: "",
-        portion: "",
-      },
-    ],
+    ingredients: "",
     preparation: "",
   });
 
@@ -30,9 +23,9 @@ const AddRecipe = (props) => {
       name: recipe.name,
       description: recipe.description,
       ingredients: recipe.ingredients,
-      preparations: recipe.preparation,
+      preparation: recipe.preparation,
     };
-    axios(recepi, {
+    axios(recipes, {
       method: "post",
       data: dadosReceita,
       withCredentials: true,
@@ -42,6 +35,7 @@ const AddRecipe = (props) => {
     })
       .then((response) => {
         console.log(response);
+        window.location.reload(true);
       })
       .catch((error) => {
         console.log(error);
@@ -53,7 +47,6 @@ const AddRecipe = (props) => {
   };
 
   const [show, setShow] = useState(false);
-
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
 

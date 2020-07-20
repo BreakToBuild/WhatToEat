@@ -1,10 +1,11 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
-import TableRec from "../RecipeTable/TableRec";
+import MyTableRec from "../RecipeTable/MyTableRec";
 import Sidnav from "../sideNav/Sidenav";
 import BreadCrumbs from "..//Breadcrumb/breadcrumb.jsx";
+import AddRecipesForm from "../recipePages/addrecipe.jsx";
 
-const AllRecipes = () => {
+const MyRecipes = () => {
   return (
     <div>
       <div>
@@ -14,11 +15,17 @@ const AllRecipes = () => {
         <BreadCrumbs />
 
         <div className="container-fluid">
-          <TableRec />
+          <MyTableRec />
+        </div>
+
+        <div className="flex-large" style={{ padding: "15px" }}>
+          <div>
+            <AddRecipesForm />
+          </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default AllRecipes;
+export default MyRecipes;

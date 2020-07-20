@@ -4,38 +4,29 @@ import { Table, Button, Modal } from "react-bootstrap";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { recipes } from "../../constants";
+import Cookies from "js-cookie";
 import { Form, FormGroup, Input, Label } from "reactstrap";
 
-import Cookies from "js-cookie";
-
-const TableRec = (props) => {
-  const [data, setData] = useState({});
+const FollowedRecipesTable = (props) => {
+  const [data, setData] = useState([]);
   const [readOnly, setReadOnly] = useState(false);
   const [show, setShow] = useState(false);
   const [recipe, setRecipe] = useState();
-
-  const handleShow = () => setShow(true);
-  const handleClose = () => {
-    setShow(false);
-    setReadOnly(false);
-    setRecipe();
-  };
-
   useEffect(() => {
     const GetData = async () => {
       const result = await axios(recipes, {
         method: "get",
         withCredentials: true,
       });
-      setData(result.data);
+      setData(result.data.following);
     };
     GetData();
   }, []);
-
-  const alreadyFollowing = (item) => {
-    return !!data.following.find((recipe) => {
-      return recipe.id === item.id;
-    });
+  const handleShow = () => setShow(true);
+  const handleClose = () => {
+    setShow(false);
+    setReadOnly(false);
+    setRecipe();
   };
   const handleUnfollow = (id) => {
     let csrftokenCookie = Cookies.get("csrftoken");
@@ -49,27 +40,13 @@ const TableRec = (props) => {
       window.location.reload(true);
     });
   };
-
+  const onChange = (e) => {
+    setRecipe({ ...recipe, [e.target.name]: e.target.value });
+  };
   const viewRecipe = (recipe) => {
     handleShow();
     setRecipe(recipe);
     setReadOnly(true);
-  };
-  const onChange = (e) => {
-    setRecipe({ ...recipe, [e.target.name]: e.target.value });
-  };
-  const handleFollow = (id) => {
-    let csrftokenCookie = Cookies.get("csrftoken");
-    axios("http://dev.localhost:8000/api/recipe/" + id + "/follow", {
-      method: "post",
-      withCredentials: true,
-      headers: {
-        "X-CSRFToken": csrftokenCookie,
-      },
-    }).then((result) => {
-      console.log("Seguido");
-      window.location.reload(true);
-    });
   };
   return (
     <>
@@ -90,47 +67,35 @@ const TableRec = (props) => {
             </tr>
           </thead>
           <tbody>
-            {data.other_users &&
-              data.other_users.map((item, id) => {
-                return (
-                  <tr style={{ fontSize: "13.5px" }} key={item.id}>
-                    <td>{item.id}</td>
-                    <td>{item.name}</td>
-                    <td>{item.description}</td>
-                    <td>
-                      {!alreadyFollowing(item) && (
-                        <Button
-                          variant="success"
-                          onClick={() => {
-                            handleFollow(item.id);
-                          }}
-                        >
-                          Seguir
-                        </Button>
-                      )}
-                      {alreadyFollowing(item) && (
-                        <Button
-                          variant="danger"
-                          onClick={() => {
-                            handleUnfollow(item.id);
-                          }}
-                        >
-                          Deixar de seguir
-                        </Button>
-                      )}
-                      <Button
-                        style={{ marginLeft: "10px" }}
-                        variant="info"
-                        onClick={() => {
-                          viewRecipe(item);
-                        }}
-                      >
-                        Ver receita
-                      </Button>
-                    </td>
-                  </tr>
-                );
-              })}
+            {data.map((item, id) => {
+              return (
+                <tr style={{ fontSize: "13.5px" }} key={item.id}>
+                  <td>{item.id}</td>
+                  <td>{item.name}</td>
+                  <td>{item.description}</td>
+                  <td>
+                    <Button
+                      variant="danger"
+                      style={{ marginLeft: "10px" }}
+                      onClick={() => {
+                        handleUnfollow(item.id);
+                      }}
+                    >
+                      Deixar de seguir
+                    </Button>
+                    <Button
+                      variant="info"
+                      style={{ marginLeft: "10px" }}
+                      onClick={() => {
+                        viewRecipe(item);
+                      }}
+                    >
+                      Ver receita
+                    </Button>
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </Table>
       </div>
@@ -203,4 +168,4 @@ const TableRec = (props) => {
   );
 };
 
-export default TableRec;
+export default FollowedRecipesTable;
