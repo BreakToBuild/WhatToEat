@@ -8,7 +8,7 @@ import Logout from "../forms/logout.jsx";
 
 function Sidnav() {
   return (
-    <SideNav expanded style={{ background: "#000000" }}>
+    <SideNav expanded style={{ background: "#000000", minHeight: "1400px" }}>
       <NavItem>
         <h3
           style={{
